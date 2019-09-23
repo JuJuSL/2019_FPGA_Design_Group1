@@ -12,15 +12,11 @@ FSM State Diagram
 StateDiagram
 
 # 模擬結果圖
-* 測試檔1
-test1
+> * 測試檔1
+> test1
 
-* 測試檔2
-test2
 
 # 模擬波形圖
-* 測試檔1
-test1_1 
+> * 測試檔1
+> test1_1 
 
-* 測試檔2
-test2_1 
