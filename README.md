@@ -8,8 +8,7 @@ E24056409、E24056263、E14054162
 轉譯系統將依續完成涵蓋於直角三角形 平面內的所有座標點之輸出
 
 # 設計說明
-FSM State Diagram
-StateDiagram
+>　StateDiagram
 
 # 模擬結果圖
 > * 測試檔1
