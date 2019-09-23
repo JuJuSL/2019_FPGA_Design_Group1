@@ -3,11 +3,11 @@
 E24056409、E24056263、E14054162
 
 # 問題描述
-# Program 1 - 使用板子上的 RGB LED 實現路口交通號誌 (90%)
+### Program 1 - 使用板子上的 RGB LED 實現路口交通號誌 (90%)
 作業說明
 使用兩顆 RGB LED ，分別代表一個路口的兩個燈號
 
-# 作業需求：
+### 作業需求：
 
 兩個路口的黃燈長(t1)皆為 1 sec ，綠燈長(t2)皆為 5 sec ，兩者皆為紅燈的時間長(t3)為 1 sec (1 sec 不必是實際準確的一秒，可直接使用 Lab 提供的除頻器
 
@@ -20,7 +20,7 @@ Hint : RGB LED 的控制
 
 如何製造黃燈
 
-# Bonus (20%)
+### Bonus (20%)
 作業說明
 加入 Switches 和 Buttons 來調整 Program 1 的三種時間長。
 
@@ -36,7 +36,7 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
 用 4-bit LED 以二進位顯示秒數。
 
-# Bonus 2 (20%)
+### Bonus 2 (20%)
 畫出系統設計圖 (非合成後的電路圖)。
 
 # 設計說明
@@ -52,7 +52,7 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 > test1_1 
 
 # Problems (10%)
-為什麼要加入 blinky.xdc 這個 Constraint ?
+> 為什麼要加入 blinky.xdc 這個 Constraint ?
 Hint、 Hint too
 
-承上題，若沒有加入這個 Constraint，可能會發生什麼事?
+> 承上題，若沒有加入這個 Constraint，可能會發生什麼事?
