@@ -13,6 +13,7 @@ E24056409、E24056263、E14054162
 # 模擬結果圖
 > * 測試檔1
 > test1
+
 看到testfixture跑出的PASS結果。
 ![resultpic](images/result01.PNG)
 
