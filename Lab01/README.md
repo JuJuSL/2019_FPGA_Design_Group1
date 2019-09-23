@@ -51,3 +51,8 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 > * 測試檔1
 > test1_1 
 
+# Problems (10%)
+為什麼要加入 blinky.xdc 這個 Constraint ?
+Hint、 Hint too
+
+承上題，若沒有加入這個 Constraint，可能會發生什麼事?
