@@ -13,7 +13,7 @@ module triangle (clk, reset, nt, xi, yi, busy, po, xo, yo);
   reg [2:0] cstate, nstate;
 
   `define BEGIN     3'd0
-	`define BUSY0     3'd1
+  `define BUSY0     3'd1
   `define GET1      3'd2
   `define GET2      3'd3
   `define GET3      3'd4
@@ -35,7 +35,7 @@ module triangle (clk, reset, nt, xi, yi, busy, po, xo, yo);
         busy   = 1;
         po     = 0;
       end
-			`BUSY0: begin
+      `BUSY0: begin
         nstate = `GET1;
         busy   = 0;
         po     = 0;
@@ -83,8 +83,8 @@ module triangle (clk, reset, nt, xi, yi, busy, po, xo, yo);
         y3 <= 3'd0;
         xo <= 3'd0;
         yo <= 3'd0;
-				lit <= 6'd0;
-				big <= 6'd0;
+        lit <= 6'd0;
+        big <= 6'd0;
       end
       `GET1 : begin
         xo <= 3'd0;
@@ -102,15 +102,15 @@ module triangle (clk, reset, nt, xi, yi, busy, po, xo, yo);
       end
       `CAL  : begin
         xo <= xo + 3'd1;
-				yo <= (xo == 3'd7)?yo+3'd1:yo;
+        yo <= (xo == 3'd7)?yo+3'd1:yo;
         big <= (y3-yo)*(x2-x3);
-				lit <= (xo == 3'd7)?(y3-y2)*(xo+3'd1-x3):0;
+        lit <= (xo == 3'd7)?(y3-y2)*(xo+3'd1-x3):0;
       end
       `DOUT : begin
         xo <= xo + 3'd1;
-				yo <= (xo == 3'd7)?yo+3'd1:yo;
+        yo <= (xo == 3'd7)?yo+3'd1:yo;
         big <= (y3-yo)*(x2-x3);
-				lit <= (y3-y2)*(xo+3'd1-x3);
+        lit <= (y3-y2)*(xo+3'd1-x3);
       end
       default: begin
       end
