@@ -9,6 +9,7 @@ E24056409、E24056263、E14054162
 
 # 設計說明
 >　StateDiagram
+![fsm](images/FPGA_Lab00_fsm.png)
 
 # 模擬結果圖
 > * 測試檔1
