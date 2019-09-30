@@ -155,7 +155,7 @@ module LED(
             end
         endcase
     end
-    always@(posedge add or posedge sub ) begin //posedge sw or posedge add or posedge sub
+    always@(posedge clk) begin //posedge sw or posedge add or posedge sub
         case(sw) 
             2'b00: begin
                 if(state == Reset) begin
