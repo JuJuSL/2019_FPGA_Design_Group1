@@ -21,7 +21,6 @@ module LED(
     );
     
     reg [3:0] y_time,g_time,r_time;
-    reg [3:0] y_ptime,g_ptime,r_ptime;
     reg [2:0] state,n_state;
     reg [3:0] count;
    
@@ -62,6 +61,9 @@ module LED(
                 end
                 R2_yellow: begin
                     n_state = (count == y_time)? R1R2_red : R2_yellow;
+                end
+                Set: begin
+                    n_state = R1R2_red;
                 end
                 default: begin
                     n_state = Reset;
@@ -155,7 +157,7 @@ module LED(
             end
         endcase
     end
-    always@(posedge clk) begin //posedge sw or posedge add or posedge sub
+    always@(posedge clk ) begin //posedge sw or posedge add or posedge sub
         case(sw) 
             2'b00: begin
                 if(state == Reset) begin
