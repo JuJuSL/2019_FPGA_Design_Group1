@@ -1,0 +1,29 @@
+module LED(
+    input   clk ,
+    input   rst ,
+    input   [1:0] sw    ,
+    output  reg     [3:0] led
+    );
+
+
+reg		[15:0]	counter_gaol;
+assign			next_counter_39215 =0  //= (counter_39215 == 16'39215)? 16'd0 : counter_39215 + 16'd1;	//400KHz
+reg		[15:0]  counter_39215
+
+
+parameter       [7:0]	counter_256;
+assign			next_counter_256 =0    //= (counter_256 == 8'd255)? 8'd0 : counter_256 + 8'd1;	//400KHz
+
+
+
+
+    always@(counter_goal)begin 
+      	always@(posedge clk)begin
+            2'b00:  led = 4'b0000;
+            next_counter_256 = (counter_256 == 8'd255)? 8'd0 : counter_256 + 8'd1;
+            next_counter_39215 = (counter_256 == 8'd255)? counter_39215 + 16'd1: ;
+            counter_goal = (counter_39215 == 16'39215)? (counter_goal - 16'd1;next_counter_39215=8'd0;counter_39215=8'd0): ;
+	end
+    end 
+    
+endmodule
