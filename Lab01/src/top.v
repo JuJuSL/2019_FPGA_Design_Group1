@@ -9,13 +9,14 @@ module top(
     );
     
     wire    clk_div ;
+    wire    add_out,sub_out;
     
     LED led_0(
     .clk    (clk_div),
     .rst    (rst),
     .sw     (sw),
-    .add    (add),
-    .sub    (sub),
+    .add    (add_out),
+    .sub    (sub_out),
     .led    (led),
     .led4_b(led4_b),
     .led4_r(led4_r),
@@ -31,5 +32,15 @@ module top(
     .clk_div    (clk_div)
     );
     
+    debounce D1 (
+    .clk    (clk_div),
+    .bn_in  (add),
+    .bn_out (add_out) 
+    );
     
+    debounce D2 (
+    .clk    (clk_div),
+    .bn_in  (sub),
+    .bn_out (sub_out) 
+    );
 endmodule
