@@ -191,4 +191,3 @@ set_property -dict { PACKAGE_PIN L20   IOSTANDARD LVCMOS33 } [get_ports { sub}];
 ##Crypto SDA 
 
 #set_property -dict { PACKAGE_PIN J15   IOSTANDARD LVCMOS33 } [get_ports { crypto_sda }]; #IO_25_35 Sch=crypto_sda
-set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets reset_IBUF] 
