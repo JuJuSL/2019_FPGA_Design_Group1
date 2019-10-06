@@ -19,20 +19,21 @@ Hint : RGB LED 的控制
 
 對應到 xdc file 上的控制腳位為 RGB LEDs 那欄。
 
-如何製造黃燈
-
 ### Result
-> * 兩邊皆紅燈
-
-> * 其中一邊路口綠燈
-
-> * 黃燈
-
-> * 另一邊的路口綠燈
-
-> * 兩邊都紅燈
-
+ * 兩邊皆紅燈
+![red](image/1.jpg)
+ * 其中一邊路口綠燈
+![green1](image/2.jpg)
+ * 黃燈
+![yellow1](image/3.jpg)
+ * 另一邊的路口綠燈
+![green2](image/4.jpg)
+ * 黃燈
+![yellow2](image/5.jpg)
+ * 兩邊都紅燈
+![red](image/1.jpg)
 以上燈號重複循環
+
 ### Bonus 
 
 Switch 為 00 時 ，紅綠燈正常運作。
@@ -45,7 +46,22 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
 用 4-bit LED 以二進位顯示秒數。
 
-### Bonus 2 (20%)
+### Result
+ * 兩邊皆紅燈
+![red](image/1.jpg)
+ * 其中一邊路口綠燈
+![green1](image/2.jpg)
+ * 黃燈
+![yellow1](image/3.jpg)
+ * 另一邊的路口綠燈
+![green2](image/4.jpg)
+ * 黃燈
+![yellow2](image/5.jpg)
+ * 兩邊都紅燈
+![red](image/1.jpg)
+以上燈號重複循環
+
+### Bonus 2 
 畫出系統設計圖 (非合成後的電路圖)。
 
 # 設計說明
