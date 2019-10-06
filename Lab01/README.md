@@ -79,9 +79,10 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 由於工具不了解我們使用的振盪器頻率，因此必須定義適當的時序約束以進行分析。
 
 create_clock 可以定義primary clock 的clock rate、duty cycle
+
 create_generated_clock 則是定義了利用 primary clock所製造出的clock
 
 
 2.承上題，若沒有加入這個 Constraint，可能會發生什麼事?
  * 當去掉 blinky.xdc 跑 generate bitstream 出現以下的error message
- ![error](image/error mes.jpg)
+ ![error](image/error mes.PNG)
