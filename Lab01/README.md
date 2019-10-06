@@ -21,13 +21,9 @@ Hint : RGB LED 的控制
 
 如何製造黃燈
 
-### R
+### Result
 
-### Bonus (20%)
-作業說明
-加入 Switches 和 Buttons 來調整 Program 1 的三種時間長。
-
-作業需求：
+### Bonus 
 
 Switch 為 00 時 ，紅綠燈正常運作。
 
