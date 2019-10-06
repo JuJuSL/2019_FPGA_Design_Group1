@@ -33,8 +33,8 @@ Hint : RGB LED 的控制
 ![red](image/1.jpg)
 以上燈號重複循環
 
-* <a href="https://drive.google.com/open?id=1p1P1RFp4VyV7zHvPNFTI3BP-4wI_ZKF_" title="下载影片">DEMO影片</a>
-* [![Audi R8](http://img.youtube.com/vi/J-8fqOlvvsQ/0.jpg)](https://www.youtube.com/embed/J-8fqOlvvsQ "Audi R8")
+* <a href="https://drive.google.com/open?id=1p1P1RFp4VyV7zHvPNFTI3BP-4wI_ZKF_" title="下载影片">DEMO影片</a>(請點選下方圖示查看)
+ [![Audi R8](http://img.youtube.com/vi/J-8fqOlvvsQ/0.jpg)](https://www.youtube.com/embed/J-8fqOlvvsQ "Audi R8")
 
 ### Bonus 
 
