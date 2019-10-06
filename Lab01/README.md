@@ -33,6 +33,9 @@ Hint : RGB LED 的控制
 ![red](image/1.jpg)
 以上燈號重複循環
 
+* DEMO影片
+<a href="https://drive.google.com/open?id=1p1P1RFp4VyV7zHvPNFTI3BP-4wI_ZKF_" title="下载影片">DEMO影片連結</a>
+
 ### Bonus 
 
 Switch 為 00 時 ，紅綠燈正常運作。
@@ -62,8 +65,6 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 ![sw112](image/sw112.jpg)
  * 燈號時間最大可以加到15s
 ![addmax](image/addmax.jpg)
-* DEMO影片
-<a href="https://drive.google.com/open?id=1p1P1RFp4VyV7zHvPNFTI3BP-4wI_ZKF_" title="下载影片">DEMO影片連結</a>
 
 ### Bonus 2 
  * 系統設計圖 
