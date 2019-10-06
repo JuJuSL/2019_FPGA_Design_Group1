@@ -70,9 +70,14 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
 # Problems (10%)
 1.為什麼要加入 blinky.xdc 這個 Constraint ?
-
-    blinky.xdc
+ * blinky.xdc內的程式碼
+    
     create_clock -period 8.000 -name sys_clk_pin -waveform {0.000 4.000} -add [get_ports clk]
     create_generated_clock -name clk_div -divide_by 125000000 -source [get_ports clk] [get_pins div_0/clk_div_reg/Q];
+    
+由於工具不了解我們使用的振盪器頻率，因此必須定義適當的時序約束以進行分析。
+create_clock 可以定義primary clock 的clock rate、duty cycle，
 
 2.承上題，若沒有加入這個 Constraint，可能會發生什麼事?
+ * 當去掉 blinky.xdc 跑 generate bitstream 出現以下的error message
+ ![error](image/errormes.jpg)
