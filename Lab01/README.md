@@ -1,4 +1,3 @@
-@@ -1,58 +0,0 @@
 # FPGA-based System Design - Lab00 HW
 # 2019_FPGA_Design_Group1
 E24056409、E24056263、E14054162
@@ -68,17 +67,6 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 ### Bonus 2 
 畫出系統設計圖 (非合成後的電路圖)。
 
-# 設計說明
->　StateDiagram
-
-# 模擬結果圖
-> * 測試檔1
-> test1
-
-
-# 模擬波形圖
-> * 測試檔1
-> test1_1 
 
 # Problems (10%)
 > 為什麼要加入 blinky.xdc 這個 Constraint ?
