@@ -65,8 +65,8 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
 
 ### Bonus 2 
-畫出系統設計圖 (非合成後的電路圖)。
-
+ * 系統設計圖 
+![design](image/block_diagram.png)
 
 # Problems (10%)
 1.為什麼要加入 blinky.xdc 這個 Constraint ?
