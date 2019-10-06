@@ -89,4 +89,7 @@ create_generated_clock 則是定義了利用 primary clock所製造出的clock
  ![error](image/error.PNG)
  
  顯示使用者並未定義timing constraints，這樣可能會造成合成後的timing analysis發生錯誤
-
+ * Report
+  ![error2](image/error2.PNG)
+  
+ 由上圖可以看到有關timimg的report跑不出來
