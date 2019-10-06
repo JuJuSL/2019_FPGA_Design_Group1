@@ -1,4 +1,3 @@
-@@ -1,58 +0,0 @@
 # FPGA-based System Design - Lab00 HW
 # 2019_FPGA_Design_Group1
 E24056409、E24056263、E14054162
@@ -47,37 +46,43 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 用 4-bit LED 以二進位顯示秒數。
 
 ### Result
- * 兩邊皆紅燈
-![red](image/1.jpg)
- * 其中一邊路口綠燈
-![green1](image/2.jpg)
- * 黃燈
-![yellow1](image/3.jpg)
- * 另一邊的路口綠燈
-![green2](image/4.jpg)
- * 黃燈
-![yellow2](image/5.jpg)
- * 兩邊都紅燈
-![red](image/1.jpg)
-以上燈號重複循環
+ * Switch 為 00 時 ， 燈號時間跟結果同上一個Result
+
+ * Switch 為 01 時 ， 黃燈長本來是1s
+![sw011](image/sw011.jpg)
+ * 按BN1可以增加黃燈時間
+![sw012](image/sw012.jpg)
+ * Switch 為 10 時 ， 綠燈長本來是5s
+![sw101](image/sw101.jpg)
+ * 按BN2可以減少綠燈時間
+![sw102](image/sw102.jpg)
+ * Switch 為 11 時 ， 兩邊紅燈長本來是1s
+![sw111](image/sw111.jpg)
+ * 按BN1可以增加兩邊紅燈時間
+![sw112](image/sw112.jpg)
+ * 燈號時間最大可以加到15s
+![addmax](image/addmax.jpg)
+
 
 ### Bonus 2 
 畫出系統設計圖 (非合成後的電路圖)。
 
-# 設計說明
->　StateDiagram
-
-# 模擬結果圖
-> * 測試檔1
-> test1
-
-
-# 模擬波形圖
-> * 測試檔1
-> test1_1 
 
 # Problems (10%)
-> 為什麼要加入 blinky.xdc 這個 Constraint ?
-Hint、 Hint too
+1.為什麼要加入 blinky.xdc 這個 Constraint ?
+ *blinky.xdc內的程式碼
+ 
+    create_clock -period 8.000 -name sys_clk_pin -waveform {0.000 4.000} -add [get_ports clk]
+    create_generated_clock -name clk_div -divide_by 125000000 -source [get_ports clk] [get_pins div_0/clk_div_reg/Q];
+    
+    
+由於工具不了解我們使用的振盪器頻率，因此必須定義適當的時序約束以進行分析。
 
-> 承上題，若沒有加入這個 Constraint，可能會發生什麼事?
+create_clock 可以定義primary clock 的clock rate、duty cycle
+
+create_generated_clock 則是定義了利用 primary clock所製造出的clock
+
+
+2.承上題，若沒有加入這個 Constraint，可能會發生什麼事?
+ * 當去掉 blinky.xdc 跑 generate bitstream 出現以下的error message
+ ![error](image/error mes.PNG)
