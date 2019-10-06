@@ -85,4 +85,4 @@ create_generated_clock 則是定義了利用 primary clock所製造出的clock
 
 2.承上題，若沒有加入這個 Constraint，可能會發生什麼事?
  * 當去掉 blinky.xdc 跑 generate bitstream 出現以下的error message
- ![error](image/error mes.PNG)
+ ![error](image/error.PNG)
