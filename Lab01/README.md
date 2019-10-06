@@ -25,13 +25,15 @@ Hint : RGB LED 的控制
  * 兩邊皆紅燈
 ![red](image/1.jpg)
  * 其中一邊路口綠燈
-
+![green1](image/2.jpg)
  * 黃燈
-
+![yellow1](image/3.jpg)
  * 另一邊的路口綠燈
-
+![green2](image/4.jpg)
+ * 黃燈
+![yellow2](image/5.jpg)
  * 兩邊都紅燈
-
+![red](image/1.jpg)
 以上燈號重複循環
 ### Bonus 
 
