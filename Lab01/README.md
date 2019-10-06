@@ -80,4 +80,4 @@ create_clock 可以定義primary clock 的clock rate、duty cycle，
 
 2.承上題，若沒有加入這個 Constraint，可能會發生什麼事?
  * 當去掉 blinky.xdc 跑 generate bitstream 出現以下的error message
- ![error](image/errormes.jpg)
+ ![error](image/error mes.jpg)
