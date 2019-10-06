@@ -70,6 +70,7 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
 # Problems (10%)
 1.為什麼要加入 blinky.xdc 這個 Constraint ?
+ 
  *blinky.xdc內的程式碼
  
     create_clock -period 8.000 -name sys_clk_pin -waveform {0.000 4.000} -add [get_ports clk]
