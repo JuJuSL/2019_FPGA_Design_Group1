@@ -50,15 +50,15 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
  * Switch 為 01 時 ， 黃燈長本來是1s
 ![sw011](image/sw011.jpg)
- * 按BN1可以增加黃燈時間
+ * 按BTN1可以增加黃燈時間
 ![sw012](image/sw012.jpg)
  * Switch 為 10 時 ， 綠燈長本來是5s
 ![sw101](image/sw101.jpg)
- * 按BN2可以減少綠燈時間
+ * 按BTN2可以減少綠燈時間
 ![sw102](image/sw102.jpg)
  * Switch 為 11 時 ， 兩邊紅燈長本來是1s
 ![sw111](image/sw111.jpg)
- * 按BN1可以增加兩邊紅燈時間
+ * 按BTN1可以增加兩邊紅燈時間
 ![sw112](image/sw112.jpg)
  * 燈號時間最大可以加到15s
 ![addmax](image/addmax.jpg)
@@ -70,6 +70,7 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
 # Problems (10%)
 1.為什麼要加入 blinky.xdc 這個 Constraint ?
+ 
  *blinky.xdc內的程式碼
  
     create_clock -period 8.000 -name sys_clk_pin -waveform {0.000 4.000} -add [get_ports clk]
@@ -85,4 +86,7 @@ create_generated_clock 則是定義了利用 primary clock所製造出的clock
 
 2.承上題，若沒有加入這個 Constraint，可能會發生什麼事?
  * 當去掉 blinky.xdc 跑 generate bitstream 出現以下的error message
- ![error](image/error mes.PNG)
+ ![error](image/error.PNG)
+ 
+ 顯示使用者並未定義timing constraints，這樣可能會造成合成後的timing analysis發生錯誤
+
