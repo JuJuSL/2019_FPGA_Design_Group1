@@ -50,15 +50,15 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
 
  * Switch 為 01 時 ， 黃燈長本來是1s
 ![sw011](image/sw011.jpg)
- * 按BN1可以增加黃燈時間
+ * 按BTN1可以增加黃燈時間
 ![sw012](image/sw012.jpg)
  * Switch 為 10 時 ， 綠燈長本來是5s
 ![sw101](image/sw101.jpg)
- * 按BN2可以減少綠燈時間
+ * 按BTN2可以減少綠燈時間
 ![sw102](image/sw102.jpg)
  * Switch 為 11 時 ， 兩邊紅燈長本來是1s
 ![sw111](image/sw111.jpg)
- * 按BN1可以增加兩邊紅燈時間
+ * 按BTN1可以增加兩邊紅燈時間
 ![sw112](image/sw112.jpg)
  * 燈號時間最大可以加到15s
 ![addmax](image/addmax.jpg)
