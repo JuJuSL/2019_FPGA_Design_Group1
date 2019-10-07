@@ -1,4 +1,4 @@
-# FPGA-based System Design - Lab00 HW
+# FPGA-based System Design - Lab01 HW
 # 2019_FPGA_Design_Group1
 E24056409、E24056263、E14054162
 
@@ -33,6 +33,10 @@ Hint : RGB LED 的控制
 ![red](image/1.jpg)
 以上燈號重複循環
 
+* <a href="https://drive.google.com/open?id=1p1P1RFp4VyV7zHvPNFTI3BP-4wI_ZKF_" title="下载影片">DEMO影片</a>(請點選下方圖示查看)
+
+ [![Audi R8](http://img.youtube.com/vi/J-8fqOlvvsQ/0.jpg)](https://www.youtube.com/embed/J-8fqOlvvsQ "Audi R8")
+
 ### Bonus 
 
 Switch 為 00 時 ，紅綠燈正常運作。
@@ -63,7 +67,6 @@ Switch 為 11 時 ，使用 Buttons 調整兩者重疊的紅燈長(t3)。
  * 燈號時間最大可以加到15s
 ![addmax](image/addmax.jpg)
 
-
 ### Bonus 2 
  * 系統設計圖 
 ![design](image/block_diagram.png)
@@ -89,4 +92,7 @@ create_generated_clock 則是定義了利用 primary clock所製造出的clock
  ![error](image/error.PNG)
  
  顯示使用者並未定義timing constraints，這樣可能會造成合成後的timing analysis發生錯誤
-
+ * Report
+  ![error2](image/error2.PNG)
+  
+ 由上圖可以看到有關timimg的report跑不出來
