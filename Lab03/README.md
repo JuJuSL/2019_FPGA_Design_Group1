@@ -21,6 +21,13 @@ Homework 3
 
 2. C Code 需加上註解。
 
+### Result
+* 說明
+* 測試code
+![Example](images/Q1_2.PNG)
+* 測試code結果截圖
+![Example](images/Q1_1.PNG)
+
 ### Program 2 - Hash Function
 
 **作業說明 :** 將組內每個人的學號透過 Hash Function 計算後 Print 在 Terminal 上。
@@ -32,8 +39,6 @@ Homework 3
 2. 需在作業說明檔中簡單描述你們選用的 Hash Function。
 
 Example:
-
-![Example](example.png)
 
 ### Program 3 - Sorting
 
