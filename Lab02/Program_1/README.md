@@ -1,32 +1,26 @@
-# FPGA-based System Design - Lab00 HW
+# FPGA-based System Design - Lab02 HW
 # 2019_FPGA_Design_Group1
 E24056409、E24056263、E14054162
 
-# 問題描述
-此直角三角形直角座標轉譯系統
-將可於 testbench 所提供的值 角三角形的三個頂點座標(x1,y1),(x2,y2)與(x3,y3)後
-轉譯系統將依續完成涵蓋於直角三角形 平面內的所有座標點之輸出
+## Program 1 - 使用 PWM 產生彩虹七色 (40%)
+
+### 作業說明
+
+使用一顆 RGB LED ，透過給予不同的 R、G、B time 來產生彩虹七色。
+
+### 作業需求
+
+1. 七種顏色不必淡出淡入，可以分段產生。
+> ex : 紅色亮2秒後換橙色，橙色亮2秒後換黃色，依此類推。
+
+2. **必須自己建立IP，使用Block Design完成作業**
+
+3. 上傳作業時須連 IP 資料夾一起上傳。*(參照Lab2-1)*
 
 # 設計說明
 >　StateDiagram
-![fsm](images/FPGA_Lab00_fsm.png)
+![fsm]()
+![ip]()
 
-# 模擬結果圖
-> * 測試檔1
-> test1
-
-看到testfixture跑出的PASS結果。
-![resultpic](images/result01.PNG)
-
-# 模擬波形圖
-> * 測試檔1
-> test1_1 
-* 完整波型
-![full wave](images/wave01.PNG)
-* 讀入第一筆三角形座標
-![read wave](images/wave02.PNG)
-* 比較lit與big的值決定是否輸出
-![compare](images/wave03.PNG)
-* 第一筆資料全部輸出完畢，讀取第二筆三角形資料
-![second data](images/wave04.PNG)
-
+# 結果影片
+![Youtube影片連結](https://youtu.be/vD5C5iZ3PYc)
