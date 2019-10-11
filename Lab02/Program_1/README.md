@@ -19,8 +19,8 @@ E24056409、E24056263、E14054162
 
 # 設計說明
 >　StateDiagram
-![fsm]()
+![fsm](images/FPGA_Lab02_p1.png)
 ![ip](images/IP.PNG)
 
 # 結果影片
-![Youtube影片連結](https://youtu.be/vD5C5iZ3PYc)
+[Youtube影片連結](https://youtu.be/vD5C5iZ3PYc)
