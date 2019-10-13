@@ -32,9 +32,9 @@ Homework 3
 
    其內部排列順序依賴於機器的類型：
 
-　　　   big-endian   從首位開始：0x100: 01, 0x101: 23,..
+　　　   big-endian   從首位開始：`0x100: 01, 0x101: 23,..`
 
-　　　   little-endian從末位開始：0x100: 67, 0x101: 45,..
+　　　   little-endian從末位開始：`0x100: 67, 0x101: 45,..`
    
       ==> 故由結果截圖知 排列從末位開始，因此為 little-endian
 
