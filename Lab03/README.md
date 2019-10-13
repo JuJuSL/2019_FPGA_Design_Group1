@@ -11,16 +11,6 @@ Homework 3
 
 請問在不改動任何設定下，ZYNQ CPU 儲存資料的方式是 big-endian 還是 little-endian?
 
-### Program 1 - 使用 AXI GPIO - 控制 RGB LED
-
-**作業說明 :** 請依照 Lab 3-2 的方法，建立一個以 Zynq Processor 和 AXI GPIO 組成的系統，並從 PS 控制 RGB LED。
-
-**作業需求 :**
-
-1. 使用 PS 端控制一顆 RGB LED ，使其依序產生彩虹七色。
-
-2. C Code 需加上註解。
-
 ### Result
 * 測試code
 ![Example](images/Q1_2.PNG)
@@ -37,6 +27,16 @@ Homework 3
 　　　   little-endian從末位開始：`0x100: 67, 0x101: 45,..`
    
       ==> 故由結果截圖知 排列從末位開始，因此為 little-endian
+
+### Program 1 - 使用 AXI GPIO - 控制 RGB LED
+
+**作業說明 :** 請依照 Lab 3-2 的方法，建立一個以 Zynq Processor 和 AXI GPIO 組成的系統，並從 PS 控制 RGB LED。
+
+**作業需求 :**
+
+1. 使用 PS 端控制一顆 RGB LED ，使其依序產生彩虹七色。
+
+2. C Code 需加上註解。
 
 ### Program 2 - Hash Function
 
