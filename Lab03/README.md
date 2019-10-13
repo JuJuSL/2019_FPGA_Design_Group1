@@ -32,7 +32,7 @@ Homework 3
 
 　　　little-endian從末位開始：0x100: 67, 0x101: 45,..
    
-   ==>故由結果截圖知，此為 little-endian
+   ==> 故由結果截圖知 排列從末位開始，因此為 little-endian
 
 
 * 測試code
