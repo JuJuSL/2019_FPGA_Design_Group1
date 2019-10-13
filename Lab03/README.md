@@ -22,6 +22,10 @@ Homework 3
 2. C Code 需加上註解。
 
 ### Result
+* 測試code
+![Example](images/Q1_2.PNG)
+* 測試code結果截圖
+![Example](images/Q1_1.PNG)
 * 說明
 
 若int，地址＝0x100，值＝0x01234567　（地址範圍為0x100~0x103位元組）
@@ -33,12 +37,6 @@ Homework 3
 　　　little-endian從末位開始：0x100: 67, 0x101: 45,..
    
    ==> 故由結果截圖知 排列從末位開始，因此為 little-endian
-
-
-* 測試code
-![Example](images/Q1_2.PNG)
-* 測試code結果截圖
-![Example](images/Q1_1.PNG)
 
 ### Program 2 - Hash Function
 
