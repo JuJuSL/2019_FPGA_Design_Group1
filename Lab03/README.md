@@ -1,4 +1,4 @@
-# FPGA-based System Design - Lab01 HW
+# FPGA-based System Design - Lab03 HW
 # 2019_FPGA_Design_Group1
 E24056409、E24056263、E14054162
 
