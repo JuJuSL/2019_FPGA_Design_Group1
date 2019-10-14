@@ -82,10 +82,15 @@ Example:
 * 測試code結果截圖
 ![Example](images/P2_1.PNG)
 * 說明
-   使用哈希函數BKDR 
+
+   使用 ` 哈希函數BKDR ` 
+   
        即 hash(abc) = a * seed^2 + b * seed^1 + c * seed^0
-       seed 通常取 > 127 的質數
+       
+       seed 通常取 ` > 127 的質數 `
+       
       ==> 因此我們取 seed = 131
+      
       即 hash(abcdefghi) = a * 131^8 + b * 131^7 + c * 131^6 + d * 131^5 + .....
 
 ### Next Lab Preview
