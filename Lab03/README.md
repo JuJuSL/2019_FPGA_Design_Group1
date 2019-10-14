@@ -38,7 +38,20 @@ Homework 3
 1. 使用 PS 端控制一顆 RGB LED ，使其依序產生彩虹七色。
 
 2. C Code 需加上註解。
-
+### Result
+* 測試code
+![Example](images/P1_2.PNG)
+* 測試code結果截圖
+![Example](images/P1_1.PNG)
+* 說明
+   使用哈希函數BKDR 
+       即 hash(abc) = a * seed^2 + b * seed^1 + c * seed^0
+       seed 通常取 > 127 的質數
+      ==> 因此我們取 seed = 131
+      即 hash(abcdefghi) = a * 131^8 + b * 131^7 + c * 131^6 + d * 131^5 + .....
+   
+  
+<HR>
 ### Program 2 - Hash Function
 
 **作業說明 :** 將組內每個人的學號透過 Hash Function 計算後 Print 在 Terminal 上。
@@ -62,6 +75,18 @@ Example:
 2. 輸入了哪些數字必須更新在 Terminal 上。
 
 3. 需在 README 上簡單註明/講解你們所使用的排序演算法。
+
+### Result
+* 測試code
+![Example](images/P2_2.PNG)
+* 測試code結果截圖
+![Example](images/P2_1.PNG)
+* 說明
+   使用哈希函數BKDR 
+       即 hash(abc) = a * seed^2 + b * seed^1 + c * seed^0
+       seed 通常取 > 127 的質數
+      ==> 因此我們取 seed = 131
+      即 hash(abcdefghi) = a * 131^8 + b * 131^7 + c * 131^6 + d * 131^5 + .....
 
 ### Next Lab Preview
 
