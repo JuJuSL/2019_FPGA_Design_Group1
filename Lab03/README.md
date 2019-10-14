@@ -87,7 +87,7 @@ Example:
    
        即 hash(abc) = a * seed^2 + b * seed^1 + c * seed^0
        
-       seed 通常取 ` > 127 的質數 `
+       seed 通常取 > 127 的質數 
        
       ==> 因此我們取 seed = 131
       
