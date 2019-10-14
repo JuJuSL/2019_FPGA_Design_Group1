@@ -19,6 +19,7 @@ E24056409、E24056263、E14054162
 # 設計說明
 >　StateDiagram
 ![fsm](images/FPGA_Lab02_p2.png)
+- time_fast 為最快的計數器，數完之後time_slow加一，time_slow數完以後time_count加一，當time_slow<time_count時則亮燈，否則不亮，依此來達成燈的明暗效果。
 
 # 結果影片
 [Youtube影片連結](https://youtu.be/4piXqNh4t54)
