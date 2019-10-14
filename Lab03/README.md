@@ -84,10 +84,8 @@ Example:
 3. 需在 README 上簡單註明/講解你們所使用的排序演算法。
 
 ### Result
-* 測試code
-![Example](images/P2_2.PNG)
 * 測試code結果截圖
-![Example](images/P2_1.PNG)
+![Example](images/P2.PNG)
 * 說明
 
    使用 ` 哈希函數BKDR ` 
