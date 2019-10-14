@@ -19,6 +19,7 @@ E24056409、E24056263、E14054162
 # 設計說明
 >　StateDiagram
 ![fsm](images/FPGA_Lab02_bo.png)
+ - 利用program1和program2的兩個FSM組合，使它同時具有呼吸燈和七彩燈的特性。
 
 # 結果影片
 [Youtube影片連結](https://youtu.be/aP2kHbCZzTk)
