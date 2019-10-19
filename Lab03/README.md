@@ -42,7 +42,7 @@ Homework 3
 * 測試code
 ![Example](images/P1_code.PNG)
 ![Example](images/P1_code2.PNG)
-![Example](images/P3_code.PNG)
+![Example](images/P1_code3.PNG)
 * 測試code結果影片
 ![Example](images/P1_1.PNG)
 
@@ -85,7 +85,7 @@ Homework 3
 3. 需在 README 上簡單註明/講解你們所使用的排序演算法。
 
 * 測試code
-![Example](images/P3_.PNG)
+![Example](images/P3_code.PNG)
 
 * 測試code結果截圖
 ![Example](images/P3.PNG)
