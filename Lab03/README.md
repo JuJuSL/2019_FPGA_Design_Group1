@@ -40,9 +40,56 @@ Homework 3
 2. C Code 需加上註解。
 ### Result
 * 測試code
-![Example](images/P1_2.PNG)
+![Example](images/P1_code.PNG)
+![Example](images/P1_code2.PNG)
+![Example](images/P1_code3.PNG)
+* 測試code結果影片
+[Youtube影片連結](https://youtu.be/PxQ2gBWV_Zs)
+
+  
+<HR>
+### Program 2 - Hash Function
+
+**作業說明 :** 將組內每個人的學號透過 Hash Function 計算後 Print 在 Terminal 上。
+
+**作業需求 :**
+
+1. 透過 Switch 切換每個人的學號後，直接在 PuTTY 上顯示那組 Switch 對應到哪一組學號，並直接印出 Hash Value。
+
+2. 需在作業說明檔中簡單描述你們選用的 Hash Function。
+
 * 測試code結果截圖
-![Example](images/P1_1.PNG)
+![Example](images/P2.PNG)
+* 說明
+
+   使用 ` 哈希函數BKDR ` 
+   
+       即 hash(abc) = a * seed^2 + b * seed^1 + c * seed^0       
+       seed 通常取 > 127 的質數        
+       
+      ==> 因此我們取 seed = 131      
+      即 hash(abcdefghi) = a * 131^8 + b * 131^7 + c * 131^6 + d * 131^5 + .....
+
+
+
+### Program 3 - Sorting
+
+**作業說明 :** 使用鍵盤輸入 20 個非負整數後，將此數列從小排到大。
+
+**作業需求 :**
+
+1. 輸入完一個數字後，以 `Enter(\n)` 區隔下一個數字。
+
+2. 輸入了哪些數字必須更新在 Terminal 上。
+
+3. 需在 README 上簡單註明/講解你們所使用的排序演算法。
+
+* 測試code
+![Example](images/P3_code.PNG)
+
+* 測試code結果截圖
+![Example](images/P3.PNG)
+
 * 說明
    使用 `bubble sort ` 
    
@@ -57,53 +104,3 @@ Homework 3
       3. 重複進行步驟1、2，每次比較到上一輪的最後一個元素。
       4. 重複進行以上步驟，直到沒有元素需要比較。
    
-  
-<HR>
-### Program 2 - Hash Function
-
-**作業說明 :** 將組內每個人的學號透過 Hash Function 計算後 Print 在 Terminal 上。
-
-**作業需求 :**
-
-1. 透過 Switch 切換每個人的學號後，直接在 PuTTY 上顯示那組 Switch 對應到哪一組學號，並直接印出 Hash Value。
-
-2. 需在作業說明檔中簡單描述你們選用的 Hash Function。
-
-Example:
-
-### Program 3 - Sorting
-
-**作業說明 :** 使用鍵盤輸入 20 個非負整數後，將此數列從小排到大。
-
-**作業需求 :**
-
-1. 輸入完一個數字後，以 `Enter(\n)` 區隔下一個數字。
-
-2. 輸入了哪些數字必須更新在 Terminal 上。
-
-3. 需在 README 上簡單註明/講解你們所使用的排序演算法。
-
-### Result
-* 測試code結果截圖
-![Example](images/P2.PNG)
-* 說明
-
-   使用 ` 哈希函數BKDR ` 
-   
-       即 hash(abc) = a * seed^2 + b * seed^1 + c * seed^0       
-       seed 通常取 > 127 的質數        
-       
-      ==> 因此我們取 seed = 131      
-      即 hash(abcdefghi) = a * 131^8 + b * 131^7 + c * 131^6 + d * 131^5 + .....
-
-### Next Lab Preview
-
-- [AXI](https://www.twblogs.net/a/5b8cb90d2b7177188334d3a7)
-- [BUS](https://zh.wikipedia.org/wiki/%E6%80%BB%E7%BA%BF)
-
-### References
-
-* [Endianness](https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82%E5%BA%8F)
-* [hash function 觀念和實務](https://hackmd.io/s/HJln3jU_e)
-* [Which hashing algorithm is best for uniqueness and speed?](https://softwareengineering.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed)
-
