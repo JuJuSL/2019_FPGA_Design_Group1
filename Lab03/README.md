@@ -44,7 +44,7 @@ Homework 3
 ![Example](images/P1_code2.PNG)
 ![Example](images/P1_code3.PNG)
 * 測試code結果影片
-![Example](images/P1_1.PNG)
+[Youtube影片連結](https://youtu.be/PxQ2gBWV_Zs)
 
   
 <HR>
