@@ -58,6 +58,11 @@ Homework 3
 
 2. 需在作業說明檔中簡單描述你們選用的 Hash Function。
 
+* 測試code
+![Example](images/P2_code.PNG)
+![Example](images/P2_code2.PNG)
+
+
 * 測試code結果截圖
 ![Example](images/P2.PNG)
 * 說明
