@@ -1,0 +1,2 @@
+製作ip時只需要4個REG。
+hdl裡面是製作ip的那兩個檔案，建立以後只需要把sorttry_v1_0_S00_AXI.v中最後一段的user logic複製，然後改一下outputreg中的slv_reg3為pslv_reg3；slv_reg4為r_data即可。
