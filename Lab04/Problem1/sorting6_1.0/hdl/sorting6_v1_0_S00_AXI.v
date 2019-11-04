@@ -1,7 +1,7 @@
 
 `timescale 1 ns / 1 ps
 
-	module sorttry_v1_0_S00_AXI #
+	module sorting6_v1_0_S00_AXI #
 	(
 		// Users to add parameters here
 
@@ -425,6 +425,7 @@ sorting sorting (
   .B7(pslv_reg2[31:28]),
   .done(done)
 );
+
 	// User logic ends
 
 	endmodule

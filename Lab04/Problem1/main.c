@@ -9,7 +9,7 @@
 #include "xil_printf.h"
 #include "xil_io.h"
 #include "xparameters.h"
-#include "sorting.h"
+#include "sorting6.h"
 
 
 int main()
@@ -48,11 +48,15 @@ int main()
 
 		data = a0 + (a1 << 4) + (a2 << 8) + (a3 << 12) + (a4 << 16) + (a5 << 20) + (a6 << 24) + (a7 << 28);
 
-		Sum = sorting(XPAR_SORTING_0_S00_AXI_BASEADDR, data);
+		printf("data input array = %d\r\n", data);
+
+		Sum = sorting6(XPAR_SORTING6_0_S00_AXI_BASEADDR, data);
+
+		printf("sum array = %d\r\n", Sum);
 
 		s7 = (Sum >> 28);
 		Sum = Sum - (s7 << 28);
-		s6 = (Sum >> 24);
+		s6 = (Sum >>  24);
 		Sum = Sum - (s6 << 24);
 		s5 = (Sum >> 20);
 		Sum = Sum - (s5 << 20);
