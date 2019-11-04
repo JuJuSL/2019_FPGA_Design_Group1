@@ -6,7 +6,7 @@
 /****************** Include Files ********************/
 #include "xil_types.h"
 #include "xstatus.h"
-
+#include "xil_io.h"
 #define ALU_S00_AXI_SLV_REG0_OFFSET 0
 #define ALU_S00_AXI_SLV_REG1_OFFSET 4
 #define ALU_S00_AXI_SLV_REG2_OFFSET 8
@@ -75,5 +75,5 @@
  *
  */
 XStatus ALU_Reg_SelfTest(void * baseaddr_p);
-
+int alu(UINTPTR baseAddr, int A, int B ,int OP ,int *OF );
 #endif // ALU_H
