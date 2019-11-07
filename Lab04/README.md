@@ -19,7 +19,7 @@ Homework 4
 
 > Block design如下圖:
 ![bd](Problem1/image/bd.PNG)
-
+<HR>
 ### Program 2.
 
 設計一個計算電路，由 processor 輸入運算子與運算元並回傳運算完的結果。(加, 減, 乘)
@@ -30,16 +30,16 @@ Homework 4
 
 2. 需考慮有號數(正、負、overflow)
 
-
+<HR>
 ### Program 3.
 
 設計 parity generator，輸入 32-bit 資料回傳其 parity bit (**禁止額外暫存器的使用 ex: counter**)。
 #### result
 * block design
-* ![avatar](Problem3/image/bd.PNG)gn
+  ![avatar](Problem3/image/bd.PNG)
 
 * 結果截圖
-* ![avatar](Problem3/image/prog3.PNG)gn
+  ![avatar](Problem3/image/prog3.PNG)
 
 * 說明
   1. 可輸入位數<=32 (bit) 的二進制數值
@@ -59,7 +59,22 @@ Homework 4
 ### Program 4.
 
 設計 [djb2](http://www.cse.yorku.ca/~oz/hash.html) 這個 hash function 的電路。
+#### result
+* block design
+  ![avatar](Problem4/image/bd.PNG)
 
+* 結果截圖
+  ![avatar](Problem4/image/P4_result.PNG)
+
+* 說明
+  1. 可輸入任意數值
+  
+  2. 並輸出相對應的hash值                           
+
+  3. hash公式 
+  
+      hash = ((hash << 5) + hash) + c;  /* hash * 33 + c */
+<HR>
 ### Program 5.
 
 設計 PWM controller。
