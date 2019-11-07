@@ -15,7 +15,7 @@ Homework 4
 
 > 本題所使用的排序是縮減版的bubble sort，也和merge sort有點相似。
 > 主要的概念如圖，這樣不斷比較之後就會排序；總共有8筆數字的話只少需要7個STAGE即可排出正確的順序。
-![SORT](Problem1/image/terminal.PNG)
+![SORT]()
 
 > Block design如下圖:
 ![bd](Problem1/image/bd.PNG)
@@ -34,7 +34,24 @@ Homework 4
 ### Program 3.
 
 設計 parity generator，輸入 32-bit 資料回傳其 parity bit (**禁止額外暫存器的使用 ex: counter**)。
+#### result
+* block design
+* [bd](Problem3/image/bd.PNG)gn
 
+* 結果截圖
+* [bd](Problem3/image/prog3.PNG)gn
+
+* 說明
+  1. 可輸入位數<=32 (bit) 的二進制數值
+  
+  2. 並輸出相對應的parity ，即 奇數個1 ==> 輸出1
+                             偶數個1 ==> 輸出0                             
+
+  3. 作業中為避使用免額外暫存器，使用 xor 作法：
+  
+      因為 xor在 奇數個1 時==> 輸出1
+                偶數個1 時==> 輸出0
+<
 ### Program 4.
 
 設計 [djb2](http://www.cse.yorku.ca/~oz/hash.html) 這個 hash function 的電路。
