@@ -71,6 +71,8 @@ Homework 4
           偶數個1 時==> 輸出0
           
           ==>將  輸入值  逐位作xor 並直接取其結果作為輸出
+          如下圖：
+          ![avatar](Problem3/image/p3.PNG)
 <HR>
   
 ### Program 4.
