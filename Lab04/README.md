@@ -19,6 +19,7 @@ Homework 4
 
 > Block design如下圖:
 ![bd](Problem1/image/bd.PNG)
+
 <HR>
   
 ### Program 2.
@@ -38,9 +39,11 @@ Homework 4
 設計 parity generator，輸入 32-bit 資料回傳其 parity bit (**禁止額外暫存器的使用 ex: counter**)。
 #### result
 * block design
+
   ![avatar](Problem3/image/bd.PNG)
 
 * 結果截圖
+
   ![avatar](Problem3/image/prog3.PNG)
 
 * 說明
@@ -64,9 +67,11 @@ Homework 4
 設計 [djb2](http://www.cse.yorku.ca/~oz/hash.html) 這個 hash function 的電路。
 #### result
 * block design
+
   ![avatar](Problem4/image/bd.PNG)
 
 * 結果截圖
+
   ![avatar](Problem4/image/P4_result.PNG)
 
 * 說明
