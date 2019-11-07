@@ -1,0 +1,13 @@
+
+
+/***************************** Include Files *******************************/
+#include "prog4_hash.h"
+
+/************************** Function Definitions ***************************/
+int hash(UINTPTR baseAddr, int I) {
+	int H;
+	int data = I;
+	PARITY_P3_mWriteReg(baseAddr, 0, data);
+	H = PARITY_P3_mReadReg (baseAddr, 4);
+	return H;
+}

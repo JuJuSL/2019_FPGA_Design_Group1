@@ -1,0 +1,13 @@
+
+
+/***************************** Include Files *******************************/
+#include "prog3_parity.h"
+
+/************************** Function Definitions ***************************/
+int parity(UINTPTR baseAddr, int I) {
+	int P;
+	int data = I;
+	PARITY_P3_mWriteReg(baseAddr, 0, data);
+	P = PARITY_P3_mReadReg (baseAddr, 4);
+	return P;
+}

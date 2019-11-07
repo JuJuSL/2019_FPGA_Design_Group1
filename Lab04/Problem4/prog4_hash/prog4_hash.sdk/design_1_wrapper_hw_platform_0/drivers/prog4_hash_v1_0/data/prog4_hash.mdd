@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER prog4_hash
+	OPTION supported_peripherals = (prog4_hash);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = prog4_hash;
+END DRIVER
