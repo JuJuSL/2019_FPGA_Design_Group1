@@ -15,7 +15,7 @@ Homework 4
 
 > 本題所使用的排序是縮減版的bubble sort，也和merge sort有點相似。
 > 主要的概念如圖，這樣不斷比較之後就會排序；總共有8筆數字的話只少需要7個STAGE即可排出正確的順序。
-![SORT]()
+![SORT](Problem1/image/terminal.PNG)
 
 > Block design如下圖:
 ![bd](Problem1/image/bd.PNG)
