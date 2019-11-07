@@ -20,6 +20,7 @@ Homework 4
 > Block design如下圖:
 ![bd](Problem1/image/bd.PNG)
 <HR>
+  
 ### Program 2.
 
 設計一個計算電路，由 processor 輸入運算子與運算元並回傳運算完的結果。(加, 減, 乘)
@@ -31,6 +32,7 @@ Homework 4
 2. 需考慮有號數(正、負、overflow)
 
 <HR>
+  
 ### Program 3.
 
 設計 parity generator，輸入 32-bit 資料回傳其 parity bit (**禁止額外暫存器的使用 ex: counter**)。
@@ -56,6 +58,7 @@ Homework 4
           奇數個1 時==> 輸出1`      
           偶數個1 時==> 輸出0
 <HR>
+  
 ### Program 4.
 
 設計 [djb2](http://www.cse.yorku.ca/~oz/hash.html) 這個 hash function 的電路。
@@ -75,6 +78,7 @@ Homework 4
   
       hash = ((hash << 5) + hash) + c;  /* hash * 33 + c */
 <HR>
+  
 ### Program 5.
 
 設計 PWM controller。
