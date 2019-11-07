@@ -20,7 +20,7 @@ Homework 4
 
 * 結果截圖
 
-![result](Problem1/image/teminal.PNG)
+![result](Problem1/image/terminal.PNG)
 
 * 說明
   1. 本題所使用的排序是縮減版的bubble sort，也和merge sort有點相似。
@@ -103,4 +103,33 @@ Homework 4
 
 2. 透過硬體解碼器驅動 RGB LED 發光
 
+#### result
+* block design
+
+  ![avatar](Problem5/image/bd.PNG)
+
+* 結果截圖
+
+  ![avatar](Problem5/image/terminal.PNG)
+  
+> 亮紅燈
+
+  ![avatar](Problem5/image/red.jpg)
+
+> 亮綠燈
+
+  ![avatar](Problem5/image/green.jpg)
+
+> 亮藍燈
+
+  ![avatar](Problem5/image/blue.jpg)
+
+> 亮白燈
+
+  ![avatar](Problem5/image/white.jpg)
+
+* 說明
+  1. 利用前面Lab的PWM來做出顏色變化
+  
+  2. 使用第四顆LED作為輸出
 
