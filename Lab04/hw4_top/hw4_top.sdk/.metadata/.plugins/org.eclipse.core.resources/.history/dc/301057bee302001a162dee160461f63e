@@ -118,10 +118,10 @@ int main(){
 				int a = 0;
 				int cnt = 1;
 				printf("Parity\n\n");
-				printf("Input I:\n");
+				printf("Input I:");
 				scanf("%d", &I);
-				printf("decimal:%d\r\n", I);
-				while(I > 1){
+				printf(" ten:%d\r\n", I);
+				while(I > 2){
 					a = (I % 2)* cnt + a;
 					I = I / 2;
 					cnt = cnt * 10;

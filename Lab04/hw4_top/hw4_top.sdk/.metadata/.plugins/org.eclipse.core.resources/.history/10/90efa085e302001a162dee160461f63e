@@ -115,19 +115,10 @@ int main(){
 		}
 		case 3:{
 				int	I, P;
-				int a = 0;
-				int cnt = 1;
 				printf("Parity\n\n");
-				printf("Input I:\n");
+				printf("Input I:");
 				scanf("%d", &I);
-				printf("decimal:%d\r\n", I);
-				while(I > 1){
-					a = (I % 2)* cnt + a;
-					I = I / 2;
-					cnt = cnt * 10;
-				}
-				a = I * cnt + a;
-				printf("binary:%d\r\n", a);
+				printf(" %d\r\n", I);
 				P = parity(XPAR_PROG3_PARITY_0_S00_AXI_BASEADDR, I);
 				printf("parity I = %d\n\r", P);
 			break;

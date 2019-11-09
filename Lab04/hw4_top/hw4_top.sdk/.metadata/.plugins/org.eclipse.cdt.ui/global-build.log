@@ -3470,3 +3470,738 @@ make pre-build main-build
 a9-linaro-pre-build-step
 ' '
 make: Nothing to be done for 'main-build'.
+19:01:55 **** Incremental Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+19:06:07 **** Incremental Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+19:24:41 **** Auto Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../top_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:29:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:30:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:32:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:33:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:35:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:36:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+../src/main.c:38:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a3);
+           ~^   ~~~
+           %ld
+../src/main.c:39:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a3);
+             ~^
+             %ld
+../src/main.c:41:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a4);
+           ~^   ~~~
+           %ld
+../src/main.c:42:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a4);
+             ~^
+             %ld
+../src/main.c:44:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a5);
+           ~^   ~~~
+           %ld
+../src/main.c:45:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a5);
+             ~^
+             %ld
+../src/main.c:47:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a6);
+           ~^   ~~~
+           %ld
+../src/main.c:48:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a6);
+             ~^
+             %ld
+../src/main.c:50:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a7);
+           ~^   ~~~
+           %ld
+../src/main.c:51:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a7);
+             ~^
+             %ld
+../src/main.c:77:28: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                           ~^
+                           %ld
+../src/main.c:77:32: warning: format '%d' expects argument of type 'int', but argument 3 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                               ~^
+                               %ld
+../src/main.c:77:36: warning: format '%d' expects argument of type 'int', but argument 4 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                   ~^
+                                   %ld
+../src/main.c:77:40: warning: format '%d' expects argument of type 'int', but argument 5 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                       ~^
+                                       %ld
+../src/main.c:77:44: warning: format '%d' expects argument of type 'int', but argument 6 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                           ~^
+                                           %ld
+../src/main.c:77:48: warning: format '%d' expects argument of type 'int', but argument 7 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                               ~^
+                                               %ld
+../src/main.c:77:52: warning: format '%d' expects argument of type 'int', but argument 8 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                   ~^
+                                                   %ld
+../src/main.c:77:56: warning: format '%d' expects argument of type 'int', but argument 9 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                       ~^
+                                                       %ld
+../src/main.c:151:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:152:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:154:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:155:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:157:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:158:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+'Finished building: ../src/main.c'
+' '
+'Building target: top.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../top_bsp/ps7_cortexa9_0/lib -o "top.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: top.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size top.elf  |tee "top.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123556	   2580	  23328	 149464	  247d8	top.elf
+'Finished building: top.elf.size'
+' '
+19:24:44 **** Incremental Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+19:25:25 **** Auto Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../top_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:29:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:30:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:32:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:33:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:35:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:36:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+../src/main.c:38:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a3);
+           ~^   ~~~
+           %ld
+../src/main.c:39:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a3);
+             ~^
+             %ld
+../src/main.c:41:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a4);
+           ~^   ~~~
+           %ld
+../src/main.c:42:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a4);
+             ~^
+             %ld
+../src/main.c:44:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a5);
+           ~^   ~~~
+           %ld
+../src/main.c:45:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a5);
+             ~^
+             %ld
+../src/main.c:47:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a6);
+           ~^   ~~~
+           %ld
+../src/main.c:48:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a6);
+             ~^
+             %ld
+../src/main.c:50:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a7);
+           ~^   ~~~
+           %ld
+../src/main.c:51:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a7);
+             ~^
+             %ld
+../src/main.c:77:28: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                           ~^
+                           %ld
+../src/main.c:77:32: warning: format '%d' expects argument of type 'int', but argument 3 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                               ~^
+                               %ld
+../src/main.c:77:36: warning: format '%d' expects argument of type 'int', but argument 4 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                   ~^
+                                   %ld
+../src/main.c:77:40: warning: format '%d' expects argument of type 'int', but argument 5 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                       ~^
+                                       %ld
+../src/main.c:77:44: warning: format '%d' expects argument of type 'int', but argument 6 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                           ~^
+                                           %ld
+../src/main.c:77:48: warning: format '%d' expects argument of type 'int', but argument 7 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                               ~^
+                                               %ld
+../src/main.c:77:52: warning: format '%d' expects argument of type 'int', but argument 8 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                   ~^
+                                                   %ld
+../src/main.c:77:56: warning: format '%d' expects argument of type 'int', but argument 9 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                       ~^
+                                                       %ld
+../src/main.c:151:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:152:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:154:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:155:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:157:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:158:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+'Finished building: ../src/main.c'
+' '
+'Building target: top.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../top_bsp/ps7_cortexa9_0/lib -o "top.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: top.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size top.elf  |tee "top.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123556	   2580	  23328	 149464	  247d8	top.elf
+'Finished building: top.elf.size'
+' '
+19:25:35 **** Incremental Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../top_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:29:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:30:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:32:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:33:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:35:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:36:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+../src/main.c:38:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a3);
+           ~^   ~~~
+           %ld
+../src/main.c:39:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a3);
+             ~^
+             %ld
+../src/main.c:41:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a4);
+           ~^   ~~~
+           %ld
+../src/main.c:42:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a4);
+             ~^
+             %ld
+../src/main.c:44:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a5);
+           ~^   ~~~
+           %ld
+../src/main.c:45:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a5);
+             ~^
+             %ld
+../src/main.c:47:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a6);
+           ~^   ~~~
+           %ld
+../src/main.c:48:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a6);
+             ~^
+             %ld
+../src/main.c:50:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a7);
+           ~^   ~~~
+           %ld
+../src/main.c:51:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a7);
+             ~^
+             %ld
+../src/main.c:77:28: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                           ~^
+                           %ld
+../src/main.c:77:32: warning: format '%d' expects argument of type 'int', but argument 3 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                               ~^
+                               %ld
+../src/main.c:77:36: warning: format '%d' expects argument of type 'int', but argument 4 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                   ~^
+                                   %ld
+../src/main.c:77:40: warning: format '%d' expects argument of type 'int', but argument 5 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                       ~^
+                                       %ld
+../src/main.c:77:44: warning: format '%d' expects argument of type 'int', but argument 6 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                           ~^
+                                           %ld
+../src/main.c:77:48: warning: format '%d' expects argument of type 'int', but argument 7 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                               ~^
+                                               %ld
+../src/main.c:77:52: warning: format '%d' expects argument of type 'int', but argument 8 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                   ~^
+                                                   %ld
+../src/main.c:77:56: warning: format '%d' expects argument of type 'int', but argument 9 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                       ~^
+                                                       %ld
+../src/main.c:151:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:152:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:154:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:155:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:157:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:158:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+'Finished building: ../src/main.c'
+' '
+'Building target: top.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../top_bsp/ps7_cortexa9_0/lib -o "top.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: top.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size top.elf  |tee "top.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123548	   2580	  23328	 149456	  247d0	top.elf
+'Finished building: top.elf.size'
+' '
+19:26:16 **** Auto Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../top_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:29:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:30:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:32:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:33:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:35:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:36:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+../src/main.c:38:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a3);
+           ~^   ~~~
+           %ld
+../src/main.c:39:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a3);
+             ~^
+             %ld
+../src/main.c:41:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a4);
+           ~^   ~~~
+           %ld
+../src/main.c:42:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a4);
+             ~^
+             %ld
+../src/main.c:44:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a5);
+           ~^   ~~~
+           %ld
+../src/main.c:45:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a5);
+             ~^
+             %ld
+../src/main.c:47:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a6);
+           ~^   ~~~
+           %ld
+../src/main.c:48:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a6);
+             ~^
+             %ld
+../src/main.c:50:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a7);
+           ~^   ~~~
+           %ld
+../src/main.c:51:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a7);
+             ~^
+             %ld
+../src/main.c:77:28: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                           ~^
+                           %ld
+../src/main.c:77:32: warning: format '%d' expects argument of type 'int', but argument 3 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                               ~^
+                               %ld
+../src/main.c:77:36: warning: format '%d' expects argument of type 'int', but argument 4 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                   ~^
+                                   %ld
+../src/main.c:77:40: warning: format '%d' expects argument of type 'int', but argument 5 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                       ~^
+                                       %ld
+../src/main.c:77:44: warning: format '%d' expects argument of type 'int', but argument 6 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                           ~^
+                                           %ld
+../src/main.c:77:48: warning: format '%d' expects argument of type 'int', but argument 7 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                               ~^
+                                               %ld
+../src/main.c:77:52: warning: format '%d' expects argument of type 'int', but argument 8 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                   ~^
+                                                   %ld
+../src/main.c:77:56: warning: format '%d' expects argument of type 'int', but argument 9 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                       ~^
+                                                       %ld
+../src/main.c:151:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:152:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:154:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:155:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:157:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:158:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+'Finished building: ../src/main.c'
+' '
+'Building target: top.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../top_bsp/ps7_cortexa9_0/lib -o "top.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: top.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size top.elf  |tee "top.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123548	   2580	  23328	 149456	  247d0	top.elf
+'Finished building: top.elf.size'
+' '
+19:26:20 **** Incremental Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+19:26:56 **** Incremental Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
+19:29:01 **** Auto Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../top_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'main':
+../src/main.c:29:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:30:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:32:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:33:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:35:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:36:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+../src/main.c:38:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a3);
+           ~^   ~~~
+           %ld
+../src/main.c:39:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a3);
+             ~^
+             %ld
+../src/main.c:41:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a4);
+           ~^   ~~~
+           %ld
+../src/main.c:42:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a4);
+             ~^
+             %ld
+../src/main.c:44:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a5);
+           ~^   ~~~
+           %ld
+../src/main.c:45:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a5);
+             ~^
+             %ld
+../src/main.c:47:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a6);
+           ~^   ~~~
+           %ld
+../src/main.c:48:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a6);
+             ~^
+             %ld
+../src/main.c:50:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a7);
+           ~^   ~~~
+           %ld
+../src/main.c:51:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a7);
+             ~^
+             %ld
+../src/main.c:77:28: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                           ~^
+                           %ld
+../src/main.c:77:32: warning: format '%d' expects argument of type 'int', but argument 3 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                               ~^
+                               %ld
+../src/main.c:77:36: warning: format '%d' expects argument of type 'int', but argument 4 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                   ~^
+                                   %ld
+../src/main.c:77:40: warning: format '%d' expects argument of type 'int', but argument 5 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                       ~^
+                                       %ld
+../src/main.c:77:44: warning: format '%d' expects argument of type 'int', but argument 6 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                           ~^
+                                           %ld
+../src/main.c:77:48: warning: format '%d' expects argument of type 'int', but argument 7 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                               ~^
+                                               %ld
+../src/main.c:77:52: warning: format '%d' expects argument of type 'int', but argument 8 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                   ~^
+                                                   %ld
+../src/main.c:77:56: warning: format '%d' expects argument of type 'int', but argument 9 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf("Sorted array = %d, %d, %d, %d, %d, %d, %d, %d\n\r", s0, s1, s2, s3, s4, s5, s6, s7);
+                                                       ~^
+                                                       %ld
+../src/main.c:151:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a0);
+           ~^   ~~~
+           %ld
+../src/main.c:152:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a0);
+             ~^
+             %ld
+../src/main.c:154:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a1);
+           ~^   ~~~
+           %ld
+../src/main.c:155:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a1);
+             ~^
+             %ld
+../src/main.c:157:12: warning: format '%d' expects argument of type 'int *', but argument 2 has type 'u32 * {aka long unsigned int *}' [-Wformat=]
+    scanf("%d", &a2);
+           ~^   ~~~
+           %ld
+../src/main.c:158:14: warning: format '%d' expects argument of type 'int', but argument 2 has type 'u32 {aka long unsigned int}' [-Wformat=]
+    printf(" %d\r\n", a2);
+             ~^
+             %ld
+'Finished building: ../src/main.c'
+' '
+'Building target: top.elf'
+'Invoking: ARM v7 gcc linker'
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L../../top_bsp/ps7_cortexa9_0/lib -o "top.elf"  ./src/main.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: top.elf'
+' '
+'Invoking: ARM v7 Print Size'
+arm-none-eabi-size top.elf  |tee "top.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 123556	   2580	  23328	 149464	  247d8	top.elf
+'Finished building: top.elf.size'
+' '
+19:29:07 **** Incremental Build of configuration Debug for project top ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: Nothing to be done for 'main-build'.
