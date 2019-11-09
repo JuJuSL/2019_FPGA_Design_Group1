@@ -35,12 +35,6 @@ Homework 4
 
 設計一個計算電路，由 processor 輸入運算子與運算元並回傳運算完的結果。(加, 減, 乘)
 
-#### 說明
-
-1. 資料寬度為8 bit
-
-2. 需考慮有號數(正、負、overflow)
-
 #### result
 * block design
 
@@ -63,19 +57,32 @@ Homework 4
 overflow
 ![result](Problem2/image/overflow1.PNG)
 ![result](Problem2/image/overflow2.PNG)
+
+
 * 說明
   1. 資料寬度為8 bit，1bit為sign bit，因此數字大小介於-128 ~ 127之間
+  
   2.overflow發生的情況有5種
+  
     加法:
+    
     (1)正數+正數
+    
     (2)負數+負數
+    
     減法:
+    
     (3)負數-正數
+    
     (4)正數-負數
+    
     乘法:
+    
     (5)乘積太大
+    
 
     以上如果計算結果超出最大可表示位元數就會發生overflow
+    
     判斷方式為檢查sign bit是否因為溢位而被改變
 
 
