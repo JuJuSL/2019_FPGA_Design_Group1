@@ -35,11 +35,57 @@ Homework 4
 
 設計一個計算電路，由 processor 輸入運算子與運算元並回傳運算完的結果。(加, 減, 乘)
 
-#### 說明
+#### result
+* block design
 
-1. 資料寬度為8 bit
+![bd](Problem2/image/block.PNG)
 
-2. 需考慮有號數(正、負、overflow)
+* 結果截圖
+
+加法
+![result](Problem2/image/add.PNG)
+
+減法
+![result](Problem2/image/sub.PNG)
+
+乘法
+![result](Problem2/image/mul.PNG)
+
+負數加減乘
+![result](Problem2/image/neg.PNG)
+
+overflow
+![result](Problem2/image/overflow1.PNG)
+![result](Problem2/image/overflow2.PNG)
+
+
+* 說明
+
+  1.資料寬度為8 bit，1bit為sign bit，因此數字大小介於-128 ~ 127之間
+  
+  2.overflow發生的情況有5種
+  
+    加法:
+    
+    (1)正數+正數
+    
+    (2)負數+負數
+    
+    減法:
+    
+    (3)負數-正數
+    
+    (4)正數-負數
+    
+    乘法:
+    
+    (5)乘積太大
+    
+
+    以上如果計算結果超出最大可表示位元數就會發生overflow
+    
+    判斷方式為檢查sign bit是否因為溢位而被改變
+
 
 <HR>
   
@@ -137,3 +183,29 @@ Homework 4
   
   2. 使用第四顆LED作為輸出
 
+
+### Top
+
+將以上5個ip整合在同一個block design中
+
+#### result
+* block design
+
+  ![avatar](Top/image/block.PNG)
+
+* 結果截圖
+  
+  Sorting
+  ![avatar](Top/image/sort.PNG)
+  
+  Arithmetic
+  ![avatar](Top/image/alu.PNG)
+  
+  Parity
+  ![avatar](Top/image/parity.PNG)
+  
+  Hash
+  ![avatar](Top/image/hash.PNG)
+  
+  PWM
+  ![avatar](Top/image/pwm.PNG)
