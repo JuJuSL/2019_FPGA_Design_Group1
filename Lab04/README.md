@@ -51,12 +51,32 @@ Homework 4
 加法
 ![result](Problem2/image/add.PNG)
 
+減法
+![result](Problem2/image/sub.PNG)
+
+乘法
+![result](Problem2/image/mul.PNG)
+
+負數加減乘
+![result](Problem2/image/neg.PNG)
+
+overflow
+![result](Problem2/image/overflow1.PNG)
+![result](Problem2/image/overflow2.PNG)
 * 說明
-  1. 本題所使用的排序是縮減版的bubble sort，也和merge sort有點相似。
-  2. 數字位元數=4bits
-  3. 數列長度=8
-  4. 主要的概念如圖，這樣不斷比較之後就會排序；總共有8筆數字的話只少需要7個STAGE即可排出正確的順序。
-![SORT](Problem1/image/sort.jpg)
+  1. 資料寬度為8 bit，1bit為sign bit，因此數字大小介於-128 ~ 127之間
+  2.overflow發生的情況有5種
+    加法:
+    (1)正數+正數
+    (2)負數+負數
+    減法:
+    (3)負數-正數
+    (4)正數-負數
+    乘法:
+    (5)乘積太大
+
+    以上如果計算結果超出最大可表示位元數就會發生overflow
+    判斷方式為檢查sign bit是否因為溢位而被改變
 
 
 <HR>
