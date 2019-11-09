@@ -60,7 +60,8 @@ overflow
 
 
 * 說明
-  1. 資料寬度為8 bit，1bit為sign bit，因此數字大小介於-128 ~ 127之間
+
+  1.資料寬度為8 bit，1bit為sign bit，因此數字大小介於-128 ~ 127之間
   
   2.overflow發生的情況有5種
   
@@ -182,3 +183,29 @@ overflow
   
   2. 使用第四顆LED作為輸出
 
+
+### Top
+
+將以上5個ip整合在同一個block design中
+
+#### result
+* block design
+
+  ![avatar](Top/image/block.PNG)
+
+* 結果截圖
+  
+  Sorting
+  ![avatar](Top/image/sort.PNG)
+  
+  Arithmetic
+  ![avatar](Top/image/alu.PNG)
+  
+  Parity
+  ![avatar](Top/image/parity.PNG)
+  
+  Hash
+  ![avatar](Top/image/hash.PNG)
+  
+  PWM
+  ![avatar](Top/image/pwm.PNG)
