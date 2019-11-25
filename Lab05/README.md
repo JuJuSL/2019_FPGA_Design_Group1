@@ -33,7 +33,13 @@ bram_interface是用來將PS存入BRAM的資料取出後計算，最後再存回
 
 ![ip](images/1.PNG)
 
-可以觀察出讀資料會慢一個clk出來
+可以觀察出:
+
+1. 讀資料會慢一個clk出來
+
+2. Reset 是active high
+
+3. Reset 過一段時間後才能開始資料存取
 
 知道控制時序後便可以設計出我們的ip
 
