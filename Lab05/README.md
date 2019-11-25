@@ -45,7 +45,10 @@ bram_interface是用來將PS存入BRAM的資料取出後計算，最後再存回
 
 Processor負責將傳入的資料算出答案後傳回controller，並將Done拉起
 
-* Cntroller 的 FSM
+* Controller 的 FSM
+
+
+![FSM](images/FSM.png)
 
 * C code 架構
 
