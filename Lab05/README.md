@@ -25,7 +25,7 @@ E24056409、E24056263、E14054162
 
 * Block Design
 
-![bd](image/block_design.PNG)
+![bd](images/block_design.PNG)
 
 [Block Memory
 Generator](https://www.xilinx.com/support/documentation/ip_documentation/blk_mem_gen/v8_3/pg058-blk-mem-gen.pdf)
