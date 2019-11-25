@@ -21,7 +21,7 @@ E24056409、E24056263、E14054162
 3. 矩陣運算處理器運算完後，啟動中斷訊號告知 CPU 存取 BRAM 中的運算結果。 (非必要)
 
 
-#### RESULT
+#### 實作方法
 * Block Design
 
 ![bd](images/block_design.PNG)
@@ -33,6 +33,16 @@ AXI BRAM Controller作為BRAM PortA的輸入控制
 BRAM PortB則是使用我們自己寫的ip來控制
 
 ![ip](images/ip.PNG)
+
+bram_interface是用來將PS存入BRAM的資料取出後計算，最後再存回BRAM中
+
+為了確認True Dual Port BRAM的存取時序，先用Testbench測試
+
+![ip](images/1.PNG)
+
+可以觀察出讀資料會慢一個clk出來
+
+
 
 
 
