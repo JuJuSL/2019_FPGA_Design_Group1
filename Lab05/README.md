@@ -37,6 +37,7 @@ bram_interface是用來將PS存入BRAM的資料取出後計算，最後再存回
 
 知道控制時序後便可以設計出我們的ip
 
+
 * Block Design 
 ![b](images/ip_block.png)
 
