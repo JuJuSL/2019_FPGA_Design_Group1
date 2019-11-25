@@ -9,15 +9,10 @@ E24056409、E24056263、E14054162
 
 請勿只交 hdl code。
 
-### PS 內長什麼樣子?
-
-![block_diagram](../images/ZYNQ.png)
 
 ### Program 1.
 
-設計一個矩陣運算的處理器，可做乘法，加法，減法，轉置，行列式運算，系統架構如下。
-
-![block_diagram](../images/system.png)
+設計一個矩陣運算的處理器，可做乘法，加法，減法，轉置，行列式運算。
 
 1. 矩陣運算處理器的指令及資料僅能透過 BRAM 存取。
 
@@ -25,8 +20,12 @@ E24056409、E24056263、E14054162
 
 3. 矩陣運算處理器運算完後，啟動中斷訊號告知 CPU 存取 BRAM 中的運算結果。 (非必要)
 
-#### BRAM
-[BRAM IP](https://blog.csdn.net/u014485485/article/details/78882027)。
+
+#### RESULT
+
+* Block Design
+
+![bd](images/block_design.PNG)
 
 [Block Memory
 Generator](https://www.xilinx.com/support/documentation/ip_documentation/blk_mem_gen/v8_3/pg058-blk-mem-gen.pdf)
