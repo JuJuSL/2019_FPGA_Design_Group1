@@ -78,3 +78,6 @@ Processor負責將傳入的資料算出答案後傳回controller，並將Done拉
 * 行列式
 
 ![b](images/det.PNG)
+
+* 資料存入
+
