@@ -22,7 +22,6 @@ E24056409、E24056263、E14054162
 
 
 #### RESULT
-
 * Block Design
 
 ![bd](images/block_design.PNG)
