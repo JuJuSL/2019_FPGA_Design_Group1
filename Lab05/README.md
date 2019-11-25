@@ -56,10 +56,28 @@ Processor負責將傳入的資料算出答案後傳回controller，並將Done拉
 
 2. 再取位址時我們有一個誤解，因為xilinx提供BRAM中的Adderss是用byte來計算，一開始寫成bit計算，因此存到了奇怪的值，後來改正為byte後就可以正常讀寫了。
 
-#### DMA
 
-[AXI DMA](https://www.xilinx.com/support/documentation/ip_documentation/axi_dma/v7_1/pg021_axi_dma.pdf)
 
-[Designing with the AXI DMA core](https://www.xilinx.com/support/answers/57550.html)
+#### RESULT
+* 矩陣加法
 
-[Using AXI DMA in Vivado](https://www.youtube.com/watch?v=Yklu68WopBo)
+![b](images/add.PNG)
+
+* 矩陣減法
+
+![b](images/sub.PNG)
+
+* 矩陣乘法
+
+![b](images/mul.PNG)
+
+* 矩陣轉置
+
+![b](images/tran.PNG)
+
+* 行列式
+
+![b](images/det.PNG)
+
+* 資料存入
+
