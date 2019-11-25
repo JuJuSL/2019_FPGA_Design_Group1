@@ -62,7 +62,7 @@ Processor負責將傳入的資料算出答案後傳回controller，並將Done拉
 
 2. 再取位址時我們有一個誤解，因為xilinx提供BRAM中的Adderss是用byte來計算，一開始寫成bit計算，因此存到了奇怪的值，後來改正為byte後就可以正常讀寫了。
 
-3. BRAM 一個位置32bit因此存入的資料如下
+3. BRAM 一個位置32bit，存入的資料如下
 
 ![data](images/data.png)
 
