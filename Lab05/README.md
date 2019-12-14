@@ -33,7 +33,13 @@ bram_interface是用來將PS存入BRAM的資料取出後計算，最後再存回
 
 ![ip](images/1.PNG)
 
-可以觀察出讀資料會慢一個clk出來
+可以觀察出:
+
+1. 讀資料會慢一個clk出來
+
+2. Reset 是active high
+
+3. Reset 過一段時間後才能開始資料存取
 
 知道控制時序後便可以設計出我們的ip
 
@@ -56,7 +62,21 @@ Processor負責將傳入的資料算出答案後傳回controller，並將Done拉
 
 2. 再取位址時我們有一個誤解，因為xilinx提供BRAM中的Adderss是用byte來計算，一開始寫成bit計算，因此存到了奇怪的值，後來改正為byte後就可以正常讀寫了。
 
+3. BRAM 一個位置32bit，存入的資料如下
 
+![data](images/data.png)
+
+要計算的矩陣資料跟指令合併成兩個資料並存入
+
+* 記憶體位置分配
+
+![mem](images/memory.PNG)
+
+0x40000000 : 當使用者輸入結束後將會存入0x80000000，當controller讀到此值代表可以開始計算了 
+
+0x40000004~0x40000024 : 矩陣跟指令資料存入位置
+
+0x40000028 : 答案的存放位置
 
 #### RESULT
 * 矩陣加法
@@ -78,6 +98,4 @@ Processor負責將傳入的資料算出答案後傳回controller，並將Done拉
 * 行列式
 
 ![b](images/det.PNG)
-
-* 資料存入
 
