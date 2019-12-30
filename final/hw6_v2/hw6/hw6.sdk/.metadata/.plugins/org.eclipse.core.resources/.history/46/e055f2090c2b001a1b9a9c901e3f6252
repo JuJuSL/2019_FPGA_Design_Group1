@@ -1,0 +1,41 @@
+#include "conv_v1.h"
+#include "lenet.h"
+#include <stdio.h>
+#include "xil_printf.h"
+#include "xil_io.h"
+#include "xparameters.h"
+
+
+
+int main(){
+	/*double output[5][5]={{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+	double input[25][25],weight[5][5];
+	int size = sizeof(output);
+	printf("size = %d \n",size);
+
+	/*for(int i=0;i<25;i++)conv(2,3,i);
+	for(int i=0;i<10;i++){}
+	double R = result();
+	printf("result = %f\n",R);*/
+	/*for(int i =0;i<5;i++){
+		for(int j=0;j<5;j++){
+			printf(" %f",output[i][j]);
+		}
+		printf(" \n");
+	}*/
+
+	int Status;
+	    LeNet5 *lenet = (LeNet5 *)malloc(sizeof(LeNet5));
+		xil_printf("SD Polled File System Example Test \r\n");
+
+		Status = FfsSdPolledExample(lenet,"mod_3.txt");
+		if (Status != XST_SUCCESS) {
+			xil_printf("SD Polled File System Example Test failed \r\n");
+			return XST_FAILURE;
+		}
+
+		xil_printf("Successfully ran SD Polled File System Example Test \r\n");
+
+		return XST_SUCCESS;
+	return 0;
+}

@@ -1,0 +1,17 @@
+#include "conv_v1.h"
+#include <stdio.h>
+#include "xil_printf.h"
+#include "xil_io.h"
+#include "xparameters.h"
+
+
+int main(){
+	double output[5][5]={{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}};
+	double input[25][25],weight[5][5];
+
+	CONVOLUTE_VALID(input,output,weight);
+	printf("result = \n");
+	printf(output);
+
+	return 0;
+}

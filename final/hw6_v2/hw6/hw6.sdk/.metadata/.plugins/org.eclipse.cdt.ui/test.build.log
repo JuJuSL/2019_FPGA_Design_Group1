@@ -1,0 +1,8 @@
+16:05:40 **** Incremental Build of configuration Debug for project test ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+make: *** No rule to make target '../src/lscript.ld', needed by 'test.elf'.  Stop.
+
+16:05:40 Build Finished (took 153ms)
+

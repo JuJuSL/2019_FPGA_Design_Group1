@@ -1,0 +1,24 @@
+#include "conv_v1.h"
+#include <stdio.h>
+#include "xil_printf.h"
+#include "xil_io.h"
+#include "xparameters.h"
+
+
+int main(){
+	double a1,a2,result;
+	CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR, 204, 0);
+	CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR, 208, 0);
+			for(int i =0 ; i < 25 ; i++){
+				CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR, 4+4*i, 2);
+				CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR, 104+4*i, 2);
+
+			}
+
+	for(int i = 0;i<10;i++){}
+	a1 = CONV_V1_mReadReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR, 212);
+	a2 = CONV_V1_mReadReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR, 216);
+	result = a1 + a2*4294967296;
+	printf("result = %f",result);
+	return 0;
+}
