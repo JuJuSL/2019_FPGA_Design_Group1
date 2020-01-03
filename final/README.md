@@ -4,18 +4,18 @@ E24056409、E24056263、E14054162
 
 ### 目標
 
-利用Xilinx提供的DSP84E1模組進行5\*5的convolution，並且用此硬體運行Lenet-5。
+利用Xilinx提供的DSP模組進行5\*5的convolution，並且用此硬體運行Lenet-5。
 
 ### 硬體架構
 
-使用DSP84E1製作5\*5的convolution。
+使用DSP48E1製作5\*5的convolution。
 
-總共25個DSP84E1模組串接成完整5\*5convolution，每個DSP84E1的乘法是25bits*18bits，相加的bias是48bits，output也是48bits，即為A(25)\*B(18)+C(48)=SOL(48)，再接上AXI controller、ZYNQ processor。
+總共25個DSP48E1模組串接成完整5\*5convolution，每個DSP48E1的乘法是25bits*18bits，相加的bias是48bits，output也是48bits，即為A(25)\*B(18)+C(48)=SOL(48)，再接上AXI controller、ZYNQ processor。
 
 Convolution的feature用18bits的port，weight則是25bits，以最大限度保留model的特性。
 
 * Block Design
-![bd](images/)
+![bd](images/block.PNG)
 
 做出來的convolution做整數乘法實測可行，結果如下圖：
 ![bd](images/)
@@ -39,6 +39,11 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 ### 問題與討論
 
 1. 大部分的時間都在研究如何從板子將權重檔讀進來，PYNQ-Z2如果可以有更直覺的方式讀取檔案我們會很樂意知道，目前是用Xilffs提供的函式庫，但sdk中Xilffs的資料夾常常會不見而無法引用，時常失靈，應該是sdk的bug。
+
+2. 在程式中，我們使用了malloc將model的weight（lenet，model的struct）要使用的空間清出，並且把值一一讀進lenet中，但是在這裡我們遇到一個困難，PYNQ-Z2的空間不夠讀整個weight（甚至是lenet的第三層weight都讀不進全部），因此我們決定先做出lenet第一層的convolution，來測試我們的convolution是可行的。
+
+3. 在用DSP48E1時，無法確定他的算法是不是可以在[2's complement中通用](https://forums.xilinx.com/t5/AI-Engine-DSP-IP-and-Tools/Two-s-Complement-Multiplier-with-DSP48E1/m-p/320439)，在閱讀Document的時候也顯示可以使用，但我們的測試結果卻是錯的。
+![twoscomplement](images/twocomplement.png)
 
 ### 參考資料
 
