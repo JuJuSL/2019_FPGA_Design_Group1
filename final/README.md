@@ -20,11 +20,25 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 做出來的convolution做整數乘法實測可行，結果如下圖：
 ![bd](images/)
 
-#### C code實作方法
+#### C code
 
+參考[fan-wenjie](https://github.com/fan-wenjie/LeNet-5)寫的C code版本Lenet-5，並做出適合PYNQ-Z2板子的修改，具體如下：
+
+1. Weight讀入由binary read改為直接寫成0.2392839...的形式，讀到小數點下第65位。因為在PYNQ-Z2中要讀檔案需要用特殊的函式庫Xilffs內含的FatFS文件系統，和C原本內建的fopen用法不同，無法用binary的方式讀入，因此需要作轉換。
+
+2. 讀圖片的方法也同樣，因為無法用binary的方法讀，所以改為直接在程式中定義，目前有放兩張圖片做測試。
+![讀圖片](images/)
+
+3. 要將convolution改為硬體來運算需要將原本的for迴圈改掉，整體的架構就會改變，尤其他在convolution的部分是用#define而非一般的function定義。
+
+4. 將程式碼中訓練的部分去除，因為用FPGA來訓練計算量太大，會跑太久。
 
 #### RESULT
 
+
+### 問題與討論
+
+1. 大部分的時間都在研究如何從板子將權重檔讀進來，PYNQ-Z2如果可以有更直覺的方式讀取檔案我們會很樂意知道，目前是用Xilffs提供的函式庫，但時常失靈。
 
 ### 參考資料
 
