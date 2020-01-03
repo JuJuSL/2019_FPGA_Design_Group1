@@ -15,7 +15,7 @@ E24056409、E24056263、E14054162
 Convolution的feature用18bits的port，weight則是25bits，以最大限度保留model的特性。
 
 * Block Design
-![bd](images/)
+![bd](images/block.PNG)
 
 做出來的convolution做整數乘法實測可行，結果如下圖：
 ![bd](images/)
