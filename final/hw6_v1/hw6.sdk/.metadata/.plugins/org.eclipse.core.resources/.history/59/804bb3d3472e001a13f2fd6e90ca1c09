@@ -1,0 +1,863 @@
+
+#include "lenet.h"
+#include <string.h>
+//#include <time.h>
+#include <stdlib.h>
+#include <math.h>
+#include "conv_v1.h"
+
+#include "xparameters.h"	/* SDK generated parameters */
+#include "xsdps.h"		/* SD device driver */
+#include "xil_printf.h"
+#include "ff.h"
+#include "xil_cache.h"
+#include "xplatform_info.h"
+#include <stdio.h>
+
+static FIL fil;		/* File object */
+static FATFS fatfs;
+/*
+ * To test logical drive 0, FileName should be "0:/<File name>" or
+ * "<file_name>". For logical drive 1, FileName should be "1:/<file_name>"
+ */
+
+static char *SD_File;
+//static char filename[32];
+#ifdef __ICCARM__
+#pragma data_alignment = 32
+u8 DestinationAddress[4000*1024];
+#pragma data_alignment = 32
+u8 SourceAddress[400*1024];
+#else
+u8 DestinationAddress[4000*1024] __attribute__ ((aligned(32)));
+u8 SourceAddress[400*1024] __attribute__ ((aligned(32)));
+#endif
+
+#define TEST 7
+#define GETLENGTH(array) (sizeof(array)/sizeof(*(array)))
+
+#define GETCOUNT(array)  (sizeof(array)/sizeof(double))
+
+#define FOREACH(i,count) for (int i = 0; i < count; ++i)
+
+#define CONVOLUTE_VALID(input,output,weight)											\
+{																						\
+	for(int o0=0; o0 < GETLENGTH(output); ++o0){										\
+		for(int o1=0; o1 < GETLENGTH(*(output)); ++o1){									\
+			for(int i=0;i<25;i++)conv(2,3,i);											\
+			for(int j=0;j<10;j++){}														\
+			(output)[o0][o1] = result();												\
+		}																				\
+}																						\
+}
+
+
+
+#define CONVOLUTE_FULL(input,output,weight)												\
+{																						\
+	for(int i0=0; i0 < GETLENGTH(input); ++i0)											\
+		for(int i1=0; i1 < GETLENGTH(*(input)); ++i1)									\
+			for(int w0=0; w0 < GETLENGTH(weight); ++w0)									\
+				for(int w1=0; w1 < GETLENGTH(*(weight)); ++w1)							\
+					(output)[i0 + w0][i1 + w1] += (input)[i0][i1] * (weight)[w0][w1];	\
+}
+
+#define CONVOLUTION_FORWARD(input,output,weight,bias,action)					\
+{																				\
+	for (int x = 0; x < GETLENGTH(weight); ++x)									\
+		for (int y = 0; y < GETLENGTH(*weight); ++y)							\
+			CONVOLUTE_VALID(input[x], output[y], weight[x][y]);					\
+	for(int j=0; j < GETLENGTH(output); ++j)									\
+		for(int i=0; i < GETCOUNT(output[j]); ++i)								\
+		((double *)output[j])[i] = action(((double *)output[j])[i] + bias[j]);	\
+}
+
+#define CONVOLUTION_BACKWARD(input,inerror,outerror,weight,wd,bd,actiongrad)\
+{																			\
+	for (int x = 0; x < GETLENGTH(weight); ++x)								\
+		for (int y = 0; y < GETLENGTH(*weight); ++y)						\
+			CONVOLUTE_FULL(outerror[y], inerror[x], weight[x][y]);			\
+	for(int i=0; i < GETCOUNT(inerror); ++i)								\
+		((double *)inerror)[i] *= actiongrad(((double *)input)[i]);			\
+	for(int j=0; j < GETLENGTH(outerror); ++j)								\
+		for(int i=0; i < GETCOUNT(outerror[j]); ++i)						\
+		bd[j] += ((double *)outerror[j])[i];								\
+	for (int x = 0; x < GETLENGTH(weight); ++x)								\
+		for (int y = 0; y < GETLENGTH(*weight); ++y)						\
+			CONVOLUTE_VALID(input[x], wd[x][y], outerror[y]);				\
+}
+
+
+#define SUBSAMP_MAX_FORWARD(input,output)														\
+{																								\
+	const int len0 = GETLENGTH(*(input)) / GETLENGTH(*(output));								\
+	const int len1 = GETLENGTH(**(input)) / GETLENGTH(**(output));								\
+	for(int i=0; i < GETLENGTH(output); ++i)													\
+	for(int o0=0; o0 < GETLENGTH(*(output)); ++o0)												\
+	for(int o1=0; o1 < GETLENGTH(**(output)); ++o1)												\
+	{																							\
+		int x0 = 0, x1 = 0, ismax;																\
+		for(int l0=0; l0 < len0; ++l0)															\
+			for(int l1=0; l1 < len1; ++l1)														\
+		{																						\
+			ismax = input[i][o0*len0 + l0][o1*len1 + l1] > input[i][o0*len0 + x0][o1*len1 + x1];\
+			x0 += ismax * (l0 - x0);															\
+			x1 += ismax * (l1 - x1);															\
+		}																						\
+		output[i][o0][o1] = input[i][o0*len0 + x0][o1*len1 + x1];								\
+	}																							\
+}
+
+#define SUBSAMP_MAX_BACKWARD(input,inerror,outerror)											\
+{																								\
+	const int len0 = GETLENGTH(*(inerror)) / GETLENGTH(*(outerror));							\
+	const int len1 = GETLENGTH(**(inerror)) / GETLENGTH(**(outerror));							\
+	for(int i=0; i < GETLENGTH(outerror); ++i)													\
+	for(int o0=0; o0 < GETLENGTH(*(outerror)); ++o0)											\
+	for(int o1=0; o1 < GETLENGTH(**(outerror)); ++o1)											\
+	{																							\
+		int x0 = 0, x1 = 0, ismax;																\
+		for(int l0=0; l0 < len0; ++l0)															\
+			for(int l1=0; l1 < len1; ++l1)														\
+		{																						\
+			ismax = input[i][o0*len0 + l0][o1*len1 + l1] > input[i][o0*len0 + x0][o1*len1 + x1];\
+			x0 += ismax * (l0 - x0);															\
+			x1 += ismax * (l1 - x1);															\
+		}																						\
+		inerror[i][o0*len0 + x0][o1*len1 + x1] = outerror[i][o0][o1];							\
+	}																							\
+}
+
+#define DOT_PRODUCT_FORWARD(input,output,weight,bias,action)				\
+{																			\
+	for (int x = 0; x < GETLENGTH(weight); ++x)								\
+		for (int y = 0; y < GETLENGTH(*weight); ++y)						\
+			((double *)output)[y] += ((double *)input)[x] * weight[x][y];	\
+	for(int j=0; j < GETLENGTH(bias); ++j)									\
+		((double *)output)[j] = action(((double *)output)[j] + bias[j]);	\
+}
+
+#define DOT_PRODUCT_BACKWARD(input,inerror,outerror,weight,wd,bd,actiongrad)	\
+{																				\
+	for (int x = 0; x < GETLENGTH(weight); ++x)									\
+		for (int y = 0; y < GETLENGTH(*weight); ++y)							\
+			((double *)inerror)[x] += ((double *)outerror)[y] * weight[x][y];	\
+	for(int i=0; i < GETCOUNT(inerror); ++i)									\
+		((double *)inerror)[i] *= actiongrad(((double *)input)[i]);				\
+	for(int j=0; j < GETLENGTH(outerror); ++j)									\
+		bd[j] += ((double *)outerror)[j];										\
+	for (int x = 0; x < GETLENGTH(weight); ++x)									\
+		for (int y = 0; y < GETLENGTH(*weight); ++y)							\
+			wd[x][y] += ((double *)input)[x] * ((double *)outerror)[y];			\
+}
+
+double relu(double x)
+{
+	return x*(x > 0);
+}
+
+double relugrad(double y)
+{
+	return y > 0;
+}
+
+static void forward(LeNet5 *lenet, Feature *features, double(*action)(double))
+{
+	//CONVOLUTION_FORWARD(features->input, features->layer1, lenet->weight0_1, lenet->bias0_1, action);
+for(int y = 0;y<6;y++){
+	for(int o0=0; o0 < GETLENGTH(features->layer1); ++o0){//
+			for(int o1=0; o1 < GETLENGTH(*(features->layer1)); ++o1){//
+				for(int i=0;i<5;i++){
+					for(int z =0;z <5;z++){
+						conv(features->input[0][o0+i][o1+z],lenet->weight0_1[0][y][i][z],i*5+z);
+						//printf("\n%f * %f \n",features->input[0][o0+i][o1+z],lenet->weight0_1[0][y][i][z]);
+					}
+				}
+
+				for(int j=0;j<10;j++){}
+				features->layer1[y][o0][o1] = result()+lenet->bias0_1[y];
+				//printf("result = %f\n",features->layer1[y][o0][o1]);
+			}
+		}
+	}
+
+	//SUBSAMP_MAX_FORWARD(features->layer1, features->layer2);
+	//CONVOLUTION_FORWARD(features->layer2, features->layer3, lenet->weight2_3, lenet->bias2_3, action);
+	//SUBSAMP_MAX_FORWARD(features->layer3, features->layer4);
+	//CONVOLUTION_FORWARD(features->layer4, features->layer5, lenet->weight4_5, lenet->bias4_5, action);
+	//DOT_PRODUCT_FORWARD(features->layer5, features->output, lenet->weight5_6, lenet->bias5_6, action);
+}
+
+static void backward(LeNet5 *lenet, LeNet5 *deltas, Feature *errors, Feature *features, double(*actiongrad)(double))
+{
+	//DOT_PRODUCT_BACKWARD(features->layer5, errors->layer5, errors->output, lenet->weight5_6, deltas->weight5_6, deltas->bias5_6, actiongrad);
+	//CONVOLUTION_BACKWARD(features->layer4, errors->layer4, errors->layer5, lenet->weight4_5, deltas->weight4_5, deltas->bias4_5, actiongrad);
+	//SUBSAMP_MAX_BACKWARD(features->layer3, errors->layer3, errors->layer4);
+	//CONVOLUTION_BACKWARD(features->layer2, errors->layer2, errors->layer3, lenet->weight2_3, deltas->weight2_3, deltas->bias2_3, actiongrad);
+	//SUBSAMP_MAX_BACKWARD(features->layer1, errors->layer1, errors->layer2);
+	//CONVOLUTION_BACKWARD(features->input, errors->input, errors->layer1, lenet->weight0_1, deltas->weight0_1, deltas->bias0_1, actiongrad);
+}
+
+static inline void load_input(Feature *features, image input)
+{
+	double (*layer0)[LENGTH_FEATURE0][LENGTH_FEATURE0] = features->input;
+	const long sz = sizeof(image) / sizeof(**input);
+	double mean = 0, std = 0;
+	for(int j=0; j < sizeof(image) / sizeof(*input); ++j)
+		for(int k=0; k < sizeof(*input) / sizeof(**input); ++k)
+	{
+		mean += input[j][k];
+		std += input[j][k] * input[j][k];
+	}
+	mean /= sz;
+	std = sqrt(std / sz - mean*mean);
+	for(int j=0; j < sizeof(image) / sizeof(*input); ++j)
+		for(int k=0; k < sizeof(*input) / sizeof(**input); ++k)
+	{
+		layer0[0][j + PADDING][k + PADDING] = (input[j][k] - mean) / std;
+	}
+}
+
+static inline void softmax(double input[OUTPUT], double loss[OUTPUT], int label, int count)
+{
+	double inner = 0;
+	for (int i = 0; i < count; ++i)
+	{
+		double res = 0;
+		for (int j = 0; j < count; ++j)
+		{
+			res += exp(input[j] - input[i]);
+		}
+		loss[i] = 1. / res;
+		inner -= loss[i] * loss[i];
+	}
+	inner += loss[label];
+	for (int i = 0; i < count; ++i)
+	{
+		loss[i] *= (i == label) - loss[i] - inner;
+	}
+}
+
+static void load_target(Feature *features, Feature *errors, int label)
+{
+	double *output = (double *)features->output;
+	double *error = (double *)errors->output;
+	softmax(output, error, label, GETCOUNT(features->output));
+}
+
+static uint8 get_result(Feature *features, uint8 count)
+{
+	double *output = (double *)features->output; 
+	const int outlen = GETCOUNT(features->output);
+	uint8 result = 0;
+	double maxvalue = *output;
+	for (uint8 i = 1; i < count; ++i)
+	{
+		if (output[i] > maxvalue)
+		{
+			maxvalue = output[i];
+			result = i;
+		}
+	}
+	return result;
+}
+
+static double f64rand()
+{
+	static int randbit = 0;
+	if (!randbit)
+	{
+		//srand((unsigned)time(0));
+		for (int i = RAND_MAX; i; i >>= 1, ++randbit);
+	}
+	unsigned long long lvalue = 0x4000000000000000L;
+	int i = 52 - randbit;
+	for (; i > 0; i -= randbit)
+		lvalue |= (unsigned long long)rand() << i;
+	lvalue |= (unsigned long long)rand() >> -i;
+	return *(double *)&lvalue - 3;
+}
+
+
+void TrainBatch(LeNet5 *lenet, image *inputs, uint8 *labels, int batchSize)
+{
+	double buffer[GETCOUNT(LeNet5)] = { 0 };
+	int i = 0;
+#pragma omp parallel for
+	for (i = 0; i < batchSize; ++i)
+	{
+		Feature features = { 0 };
+		Feature errors = { 0 };
+		LeNet5	deltas = { 0 };
+		load_input(&features, inputs[i]);
+		forward(lenet, &features, relu);
+		load_target(&features, &errors, labels[i]);
+		backward(lenet, &deltas, &errors, &features, relugrad);
+		#pragma omp critical
+		{
+			for(int j=0; j < GETCOUNT(LeNet5); ++j)
+				buffer[j] += ((double *)&deltas)[j];
+		}
+	}
+	double k = ALPHA / batchSize;
+	for(int i=0; i < GETCOUNT(LeNet5); ++i)
+		((double *)lenet)[i] += k * buffer[i];
+}
+
+void Train(LeNet5 *lenet, image input, uint8 label)
+{
+	Feature features = { 0 };
+	Feature errors = { 0 };
+	LeNet5 deltas = { 0 };
+	load_input(&features, input);
+	forward(lenet, &features, relu);
+	load_target(&features, &errors, label);
+	backward(lenet, &deltas, &errors, &features, relugrad);
+	for(int i=0; i < GETCOUNT(LeNet5); ++i)
+		((double *)lenet)[i] += ALPHA * ((double *)&deltas)[i];
+}
+
+uint8 Predict(LeNet5 *lenet, image input,uint8 count)
+{
+	Feature features = { 0 };
+	load_input(&features, input);
+	forward(lenet, &features, relu);
+
+
+	FRESULT Res;
+	UINT NumBytesRead;
+	UINT NumBytesWritten;
+	u32 BuffCnt;
+	BYTE work[FF_MAX_SS];
+	u32 FileSize = (400*1024);
+
+			  			/*
+			  			 * To test logical drive 0, Path should be "0:/"
+			  			 * For logical drive 1, Path should be "1:/"
+			  			 */
+			  			TCHAR *Path = "0:/";
+
+int i =0;
+	for(int b = 0 ; b < 6 ; b++){
+				  			for(int c = 0;c < 28 ; c++){
+				  				for(int d = 0 ; d < 28 ; d++){
+
+				  					sprintf(SourceAddress+i*69,"%.65f\n",features.layer1[b][c][d]);
+				  					//printf("%s\n",SourceAddress+i*69);
+				  					i++;
+				  				}
+				  			}
+				  		}
+			  			/*
+			  			 * Register volume work area, initialize device
+			  			 */
+	Res = f_mount(&fatfs, Path, 0);
+
+	if (Res != FR_OK) {
+			 return XST_FAILURE;
+	}
+
+			  			/*
+			  			 * Path - Path to logical driver, 0 - FDISK format.
+			  			 * 0 - Cluster size is automatically determined based on Vol size.
+			  			 */
+			  			/*Res = f_mkfs(Path, FM_FAT32, 0, work, sizeof work);
+			  			if (Res != FR_OK) {
+			  				return XST_FAILURE;
+			  			}*/
+
+			  			/*
+			  			 * Open file with required permissions.
+			  			 * Here - Creating new file with read/write permissions. .
+			  			 * To open file with write permissions, file system should not
+			  			 * be in Read Only mode.
+			  			 */
+		SD_File = "result.txt";
+
+		Res = f_open(&fil, SD_File, FA_WRITE | FA_OPEN_ALWAYS);
+			  			if (Res) {
+			  				printf("1\n");
+			  				return XST_FAILURE;
+			  			}
+
+			  			/*
+			  			 * Pointer to beginning of file .
+			  			 */
+			  			Res = f_lseek(&fil, 0);
+			  			if (Res) {
+			  				printf("2\n");
+			  				return XST_FAILURE;
+			  			}
+
+			  			/*
+			  			 * Write data to file.
+			  			 */
+			  			Res = f_write(&fil, (const void*)SourceAddress, FileSize,
+			  					&NumBytesWritten);
+			  			if (Res) {
+			  				printf("3\n");
+			  				return XST_FAILURE;
+			  			}
+
+			  			Res = f_close(&fil);
+			  			if (Res) {
+			  				return XST_FAILURE;
+			  			}
+
+			  			return XST_SUCCESS;
+
+
+	//return get_result(&features, count);
+	return 0;
+}
+
+void Initial(LeNet5 *lenet)
+{
+	for (double *pos = (double *)lenet->weight0_1; pos < (double *)lenet->bias0_1; *pos++ = f64rand());
+	printf("weight[0][0][0][0] = %f \n",lenet->weight0_1[0][0][0][0]);
+	//for (double *pos = (double *)lenet->weight0_1; pos < (double *)lenet->weight2_3; *pos++ *= sqrt(6.0 / (LENGTH_KERNEL * LENGTH_KERNEL * (INPUT + LAYER1))));
+	//for (double *pos = (double *)lenet->weight2_3; pos < (double *)lenet->weight4_5; *pos++ *= sqrt(6.0 / (LENGTH_KERNEL * LENGTH_KERNEL * (LAYER2 + LAYER3))));
+	//for (double *pos = (double *)lenet->weight4_5; pos < (double *)lenet->weight5_6; *pos++ *= sqrt(6.0 / (LENGTH_KERNEL * LENGTH_KERNEL * (LAYER4 + LAYER5))));
+	//for (double *pos = (double *)lenet->weight5_6; pos < (double *)lenet->bias0_1; *pos++ *= sqrt(6.0 / (LAYER5 + OUTPUT)));
+	//for (int *pos = (int *)lenet->bias0_1; pos < (int *)(lenet + 1); *pos++ = 0);
+}
+
+/*void test(double input[25][25],double output[5][5],double weight[5][5]){
+	CONVOLUTE_VALID(input,output,weight);
+	int b= sizeof(input);
+	printf("b = %d",b);
+}*/
+
+char* FfsSdPolledExample(LeNet5 *lenet, char filename[])
+{
+	FRESULT Res;
+	UINT NumBytesRead;
+	UINT NumBytesWritten;
+	u32 BuffCnt;
+	BYTE work[FF_MAX_SS];
+	u32 FileSize = (4000*1024);
+
+
+	TCHAR *Path = "0:/";
+
+
+
+	Res = f_mount(&fatfs, Path, 0);
+
+	if (Res != FR_OK) {
+		return "error";
+	}
+
+	SD_File = (char *)filename;
+
+	Res = f_open(&fil, SD_File, FA_READ | FA_OPEN_ALWAYS);
+	if (Res) {
+		printf("1\n");
+		return "error";
+	}
+
+	Res = f_lseek(&fil, 0);
+	if (Res) {
+		printf("2\n");
+		return "error";
+	}
+
+	Res = f_read(&fil, (void*)DestinationAddress, FileSize,
+			&NumBytesRead);
+	if (Res) {
+		printf("oh!\n");
+		return "error";
+	}
+
+
+	  char *delim = "\n";
+	  char * pch;
+	  pch = strtok(DestinationAddress,delim);
+	  while (pch != NULL)
+	  {
+		 for(int a = 0; a < 1 ; a ++){
+		  		for(int b = 0 ; b < 6 ; b++){
+		  			for(int c = 0;c < 5 ; c++){
+		  				for(int d = 0 ; d < 5 ; d++){
+		  					lenet->weight0_1[a][b][c][d] = (double)strtod(pch,NULL);
+		  					//printf ("%s\n",pch);
+		  					//printf ("weight0_1 [%d][%d][%d][%d] = %f\n",a,b,c,d,lenet->weight0_1[a][b][c][d]);
+		  					pch = strtok (NULL, delim);
+		  				}
+		  			}
+		  		}
+		  	}
+		  /*for(int a = 0; a < 6 ; a ++){
+		  		  		for(int b = 0 ; b < 16 ; b++){
+		  		  			for(int c = 0;c < 5 ; c++){
+		  		  				for(int d = 0 ; d < 5 ; d++){
+		  		  					lenet->weight2_3[a][b][c][d] = (double)strtod(pch,NULL);
+		  		  					//printf ("%s\n",pch);
+		  		  					//printf ("weight2_3 [%d][%d][%d][%d] = %f\n",a,b,c,d,lenet->weight2_3[a][b][c][d]);
+		  		  					pch = strtok (NULL, delim);
+		  		  				}
+		  		  			}
+		  		  		}
+		  		  	}*/
+		  /*for(int a = 0; a < 16 ; a ++){
+		  		  		  		for(int b = 0 ; b < 120 ; b++){
+		  		  		  			for(int c = 0;c < 5 ; c++){
+		  		  		  				for(int d = 0 ; d < 5 ; d++){
+		  		  		  					lenet->weight4_5[a][b][c][d] =(double)strtod(pch,NULL);
+		  		  		  					//printf ("%s\n",pch);
+		  		  		  					//printf ("[%d][%d][%d][%d]\n",a,b,c,d);
+		  		  		  					printf ("weight4_5 [%d][%d][%d][%d] = %f\n",a,b,c,d,lenet->weight4_5[a][b][c][d]);
+		  		  		  					pch = strtok (NULL, delim);
+		  		  		  				}
+		  		  		  			}
+		  		  		  		}
+		  		  		  	}
+		  for(int a = 0; a < 120 ; a ++){
+		  		  		  		  		for(int b = 0 ; b < 10 ; b++){
+
+		  		  		  		  					lenet->weight5_6[a][b] = (double)strtod(pch,NULL);
+		  		  		  		  					//printf ("%s\n",pch);
+		  		  		  		  					printf ("weight5_6 [%d][%d] = %f\n",a,b,lenet->weight5_6[a][b]);
+		  		  		  		  					pch = strtok (NULL, delim);
+
+		  		  		  		  		}
+		  		  		  		  	}*/
+		  for(int b = 0 ; b < 6 ; b++){
+
+		  	lenet->bias0_1[b] = (double)strtod(pch,NULL);
+		  	//printf ("%s\n",pch);
+		  	//printf ("bias0_1 [%d] = %f\n",b,lenet->bias0_1[b]);
+		  	pch = strtok (NULL, delim);
+
+		  		  		  		  		  		}
+		  /*for(int b = 0 ; b < 16 ; b++){
+
+		  		  	lenet->bias2_3[b] = (double)strtod(pch,NULL);
+		  		  	//printf ("%s\n",pch);
+		  		  	printf ("bias2_3 [%d] = %f\n",b,lenet->bias2_3[b]);
+		  		  	pch = strtok (NULL, delim);
+
+		  		  		  		  		  		  		}*/
+		  /*for(int b = 0 ; b < 120 ; b++){
+
+		  		  		  	lenet->bias4_5[b] = (double)strtod(pch,NULL);
+		  		  		  	//printf ("%s\n",pch);
+		  		  		  	printf ("bias4_5 [%d] = %f\n",b,lenet->bias4_5[b]);
+		  		  		  	pch = strtok (NULL, delim);
+
+		  		  		  		  		  		  		  		}
+		  for(int b = 0 ; b < 10 ; b++){
+
+		  		  		  	lenet->bias5_6[b] = (double)strtod(pch,NULL);
+		  		  		  	//printf ("%s\n",pch);
+		  		  		  	printf ("bias5_6 [%d] = %f\n",b,lenet->bias5_6[b]);
+		  		  		  	pch = strtok (NULL, delim);
+
+		  		  		  		  		  		  		  		}*/
+	  }
+
+	Res = f_close(&fil);
+	if (Res) {
+		return "error";
+	}
+
+	return DestinationAddress;
+}
+
+void loadimage(unsigned char(*data)[28][28], unsigned char label[]){
+	// first data = 7
+	label[0] = 7;
+	for(int a=0; a<28; a++){
+		for(int b=0; b<28; b++){
+			data[0][b][a]=0;
+		}
+	}
+	data[0][7][6] =  84;
+	data[0][7][7] = 185;
+	data[0][7][8] = 159;
+	data[0][7][9] = 151;
+	data[0][7][10] =  60;
+	data[0][7][11] =  36;
+	data[0][8][6] = 222;
+	data[0][8][7] = 254;
+	data[0][8][8] = 254;
+	data[0][8][9] = 254;
+	data[0][8][10] = 254;
+	data[0][8][11] = 241;
+	data[0][8][12] = 198;
+	data[0][8][13] = 198;
+	data[0][8][14] = 198;
+	data[0][8][15] = 198;
+	data[0][8][16] = 198;
+	data[0][8][17] = 198;
+	data[0][8][18] = 198;
+	data[0][8][19] = 198;
+	data[0][8][20] = 170;
+	data[0][8][21] =  52;
+	data[0][9][6] =  67;
+	data[0][9][7] = 114;
+	data[0][9][8] =  72;
+	data[0][9][9] = 114;
+	data[0][9][10] = 163;
+	data[0][9][11] = 227;
+	data[0][9][12] = 254;
+	data[0][9][13] = 225;
+	data[0][9][14] = 254;
+	data[0][9][15] = 254;
+	data[0][9][16] = 254;
+	data[0][9][17] = 250;
+	data[0][9][18] = 229;
+	data[0][9][19] = 254;
+	data[0][9][20] = 254;
+	data[0][9][21] = 140;
+	data[0][10][11] =  17;
+	data[0][10][12] =  66;
+	data[0][10][13] =  14;
+	data[0][10][14] =  67;
+	data[0][10][15] =  67;
+	data[0][10][16] =  67;
+	data[0][10][17] =  59;
+	data[0][10][18] =  21;
+	data[0][10][19] = 236;
+	data[0][10][20] = 254;
+	data[0][10][21] = 106;
+	data[0][11][18] =  83;
+	data[0][11][19] = 253;
+	data[0][11][20] = 209;
+	data[0][11][21] =  18;
+	data[0][12][17] =  22;
+	data[0][12][18] = 233;
+	data[0][12][19] = 255;
+	data[0][12][20] =  83;
+	data[0][13][17] = 129;
+	data[0][13][18] = 254;
+	data[0][13][19] = 238;
+	data[0][13][20] =  44;
+	data[0][14][16] =  59;
+	data[0][14][17] = 249;
+	data[0][14][18] = 254;
+	data[0][14][19] =  62;
+	data[0][15][16] = 133;
+	data[0][15][17] = 254;
+	data[0][15][18] = 187;
+	data[0][15][19] =   5;
+	data[0][16][15] =   9;
+	data[0][16][16] = 205;
+	data[0][16][17] = 248;
+	data[0][16][18] =  58;
+	data[0][17][15] = 126;
+	data[0][17][16] = 254;
+	data[0][17][17] = 182;
+	data[0][18][14] =  75;
+	data[0][18][15] = 251;
+	data[0][18][16] = 240;
+	data[0][18][17] =  57;
+	data[0][19][13] =  19;
+	data[0][19][14] = 221;
+	data[0][19][15] = 254;
+	data[0][19][16] = 166;
+	data[0][20][12] =   3;
+	data[0][20][13] = 203;
+	data[0][20][14] = 254;
+	data[0][20][15] = 219;
+	data[0][20][16] =  35;
+	data[0][21][12] =  38;
+	data[0][21][13] = 254;
+	data[0][21][14] = 254;
+	data[0][21][15] =  77;
+	data[0][22][11] =  31;
+	data[0][22][12] = 224;
+	data[0][22][13] = 254;
+	data[0][22][14] = 115;
+	data[0][22][15] =   1;
+	data[0][23][11] = 133;
+	data[0][23][12] = 254;
+	data[0][23][13] = 254;
+	data[0][23][14] =  52;
+	data[0][24][10] =  61;
+	data[0][24][11] = 242;
+	data[0][24][12] = 254;
+	data[0][24][13] = 254;
+	data[0][24][14] =  52;
+	data[0][25][10] = 121;
+	data[0][25][11] = 254;
+	data[0][25][12] = 254;
+	data[0][25][13] = 219;
+	data[0][25][14] =  40;
+	data[0][26][10] = 121;
+	data[0][26][11] = 254;
+	data[0][26][12] = 207;
+	data[0][26][13] =  18;
+	// second data = 2
+	label[1] = 2;
+	for(int a=0; a<28; a++){
+		for(int b=0; b<28; b++){
+			data[1][b][a]=0;
+		}
+	}
+	data[1][3][10] = 116;
+	data[1][3][11] = 125;
+	data[1][3][12] = 171;
+	data[1][3][13] = 255;
+	data[1][3][14] = 255;
+	data[1][3][15] = 150;
+	data[1][3][16] =  93;
+	data[1][4][9] = 169;
+	data[1][4][10] = 253;
+	data[1][4][11] = 253;
+	data[1][4][12] = 253;
+	data[1][4][13] = 253;
+	data[1][4][14] = 253;
+	data[1][4][15] = 253;
+	data[1][4][16] = 218;
+	data[1][4][17] =  30;
+	data[1][5][8] = 169;
+	data[1][5][9] = 253;
+	data[1][5][10] = 253;
+	data[1][5][11] = 253;
+	data[1][5][12] = 213;
+	data[1][5][13] = 142;
+	data[1][5][14] = 176;
+	data[1][5][15] = 253;
+	data[1][5][16] = 253;
+	data[1][5][17] = 122;
+	data[1][6][7] =  52;
+	data[1][6][8] = 250;
+	data[1][6][9] = 253;
+	data[1][6][10] = 210;
+	data[1][6][11] =  32;
+	data[1][6][12] =  12;
+	data[1][6][14] =   6;
+	data[1][6][15] = 206;
+	data[1][6][16] = 253;
+	data[1][6][17] = 140;
+	data[1][7][7] =  77;
+	data[1][7][8] = 251;
+	data[1][7][9] = 210;
+	data[1][7][10] =  25;
+	data[1][7][14] = 122;
+	data[1][7][15] = 248;
+	data[1][7][16] = 253;
+	data[1][7][17] =  65;
+	data[1][8][8] =  31;
+	data[1][8][9] =  18;
+	data[1][8][14] = 209;
+	data[1][8][15] = 253;
+	data[1][8][16] = 253;
+	data[1][8][17] =  65;
+	data[1][9][13] = 117;
+	data[1][9][14] = 247;
+	data[1][9][15] = 253;
+	data[1][9][16] = 198;
+	data[1][9][17] =  10;
+	data[1][10][12] =  76;
+	data[1][10][13] = 247;
+	data[1][10][14] = 253;
+	data[1][10][15] = 231;
+	data[1][10][16] =  63;
+	data[1][11][12] = 128;
+	data[1][11][13] = 253;
+	data[1][11][14] = 253;
+	data[1][11][15] = 144;
+	data[1][12][11] = 176;
+	data[1][12][12] = 246;
+	data[1][12][13] = 253;
+	data[1][12][14] = 159;
+	data[1][12][15] =  12;
+	data[1][13][10] =  25;
+	data[1][13][11] = 234;
+	data[1][13][12] = 253;
+	data[1][13][13] = 233;
+	data[1][13][14] =  35;
+	data[1][14][10] = 198;
+	data[1][14][11] = 253;
+	data[1][14][12] = 253;
+	data[1][14][13] = 141;
+	data[1][15][9] =  78;
+	data[1][15][10] = 248;
+	data[1][15][11] = 253;
+	data[1][15][12] = 189;
+	data[1][15][13] =  12;
+	data[1][16][8] =  19;
+	data[1][16][9] = 200;
+	data[1][16][10] = 253;
+	data[1][16][11] = 253;
+	data[1][16][12] = 141;
+	data[1][17][8] = 134;
+	data[1][17][9] = 253;
+	data[1][17][10] = 253;
+	data[1][17][11] = 173;
+	data[1][17][12] =  12;
+	data[1][18][8] = 248;
+	data[1][18][9] = 253;
+	data[1][18][10] = 253;
+	data[1][18][11] =  25;
+	data[1][19][8] = 248;
+	data[1][19][9] = 253;
+	data[1][19][10] = 253;
+	data[1][19][11] =  43;
+	data[1][19][12] =  20;
+	data[1][19][13] =  20;
+	data[1][19][14] =  20;
+	data[1][19][15] =  20;
+	data[1][19][16] =   5;
+	data[1][19][18] =   5;
+	data[1][19][19] =  20;
+	data[1][19][20] =  20;
+	data[1][19][21] =  37;
+	data[1][19][22] = 150;
+	data[1][19][23] = 150;
+	data[1][19][24] = 150;
+	data[1][19][25] = 147;
+	data[1][19][26] =  10;
+	data[1][20][8] = 248;
+	data[1][20][9] = 253;
+	data[1][20][10] = 253;
+	data[1][20][11] = 253;
+	data[1][20][12] = 253;
+	data[1][20][13] = 253;
+	data[1][20][14] = 253;
+	data[1][20][15] = 253;
+	data[1][20][16] = 168;
+	data[1][20][17] = 143;
+	data[1][20][18] = 166;
+	data[1][20][19] = 253;
+	data[1][20][20] = 253;
+	data[1][20][21] = 253;
+	data[1][20][22] = 253;
+	data[1][20][23] = 253;
+	data[1][20][24] = 253;
+	data[1][20][25] = 253;
+	data[1][20][26] = 123;
+	data[1][21][8] = 174;
+	data[1][21][9] = 253;
+	data[1][21][10] = 253;
+	data[1][21][11] = 253;
+	data[1][21][12] = 253;
+	data[1][21][13] = 253;
+	data[1][21][14] = 253;
+	data[1][21][15] = 253;
+	data[1][21][16] = 253;
+	data[1][21][17] = 253;
+	data[1][21][18] = 253;
+	data[1][21][19] = 253;
+	data[1][21][20] = 249;
+	data[1][21][21] = 247;
+	data[1][21][22] = 247;
+	data[1][21][23] = 169;
+	data[1][21][24] = 117;
+	data[1][21][25] = 117;
+	data[1][21][26] =  57;
+	data[1][22][9] = 118;
+	data[1][22][10] = 123;
+	data[1][22][11] = 123;
+	data[1][22][12] = 123;
+	data[1][22][13] = 166;
+	data[1][22][14] = 253;
+	data[1][22][15] = 253;
+	data[1][22][16] = 253;
+	data[1][22][17] = 155;
+	data[1][22][18] = 123;
+	data[1][22][19] = 123;
+	data[1][22][20] =  41;
+}

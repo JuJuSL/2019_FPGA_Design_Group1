@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="COUNT_TEST" key="selection"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="COUNT_TEST"/>
+			<item value="SourceAddress"/>
+			<item value="printf"/>
+			<item value="Predict"/>
+			<item value="pred"/>
+			<item value="weight4_5"/>
+			<item value="weight4_5[a][b][c][d]"/>
+			<item value="btr"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="401" key="DIALOG_WIDTH"/>
+		<item value="1|Microsoft JhengHei UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Microsoft JhengHei UI" key="DIALOG_FONT_NAME"/>
+		<item value="499" key="DIALOG_HEIGHT"/>
+		<item value="728" key="DIALOG_X_ORIGIN"/>
+		<item value="592" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>
