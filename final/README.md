@@ -42,7 +42,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 2. 在程式中，我們使用了malloc將model的weight（lenet，model的struct）要使用的空間清出，並且把值一一讀進lenet中，但是在這裡我們遇到一個困難，PYNQ-Z2的空間不夠讀整個weight（甚至是lenet的第三層weight都讀不進全部），因此我們決定先做出lenet第一層的convolution，來測試我們的convolution是可行的。
 
-3. 在用DSP48E1時，無法確定他的算法是不是可以在[2's complement中通用](https://forums.xilinx.com/t5/AI-Engine-DSP-IP-and-Tools/Two-s-Complement-Multiplier-with-DSP48E1/m-p/320439)，在閱讀Document的時候也顯示可以使用，但我們的測試結果卻是錯的。
+3. 在用DSP48E1時，無法確定他的算法是不是可以在[2's complement中通用](https://forums.xilinx.com/t5/AI-Engine-DSP-IP-and-Tools/Two-s-Complement-Multiplier-with-DSP48E1/m-p/320439)，在閱讀Document的時候發現它的確是用2's complement的方法做運算，因此才能適用在我們的5\*5convolution上。
 ![twoscomplement](images/twocomplement.png)
 
 ### 參考資料
