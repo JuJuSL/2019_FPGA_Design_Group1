@@ -14,10 +14,12 @@ E24056409、E24056263、E14054162
 
 Convolution的feature用18bits的port，weight則是25bits，以最大限度保留model的特性。
 
+因為convolution的input值幾乎都是小於4的小數，
+
 * Block Design
 ![bd](images/block.PNG)
 
-做出來的convolution做整數乘法實測可行，結果如下圖：
+做出來的convolution做小數乘法實測可行，結果如下圖：
 ![bd](images/)
 
 ### C code
@@ -61,6 +63,8 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 3. 在用DSP48E1時，無法確定他的算法是不是可以在[2's complement中通用](https://forums.xilinx.com/t5/AI-Engine-DSP-IP-and-Tools/Two-s-Complement-Multiplier-with-DSP48E1/m-p/320439)，在閱讀Document的時候發現它的確是用2's complement的方法做運算，因此才能適用在我們的5\*5convolution上。
 ![twoscomplement](images/twocomplement.png)
+
+4. 基於我們的DSP架構，最後的加法只有48bits，若是用的太緊繃，可能會造成overflow，因此我們原本決定的Fix-Point位數被我們改為目前的1024，這樣就不會有overflow的問題。
 
 ### 參考資料
 
