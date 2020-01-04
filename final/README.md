@@ -26,7 +26,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 1. Weight讀入由binary read改為直接寫成0.2392839...的形式，讀到小數點下第65位。因為在PYNQ-Z2中要讀檔案需要用特殊的函式庫Xilffs內含的FatFS文件系統，和C原本內建的fopen用法不同，無法用binary的方式讀入，因此需要作轉換。
 
-2. 讀圖片的方法也同樣，因為無法用binary的方法讀，所以改為直接在程式中定義，目前有放兩張圖片做測試。
+2. 讀圖片的方法也同樣，因為無法用binary的方法讀，所以改為直接在程式中定義，目前有放三張圖片做測試。
 ![讀圖片](images/pridicted.png)
 
 3. 要將convolution改為硬體來運算需要將原本的for迴圈改掉，整體的架構就會改變，尤其他在convolution的部分是用#define而非一般的function定義，因此我們定義了一個新的函示conv來專門做5\*5 convolution的硬體運算。
@@ -46,6 +46,10 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 #### RESULT
 
+下圖是我們測試三張圖片的結果，其中最後一行的前十個數字是每個數的機率，最高者就是我們預測出的數字。
+![7](images/prec_7.png)
+![0](images/prec_0.png)
+![2](images/prec_2.png)
 
 ### 問題與討論
 
