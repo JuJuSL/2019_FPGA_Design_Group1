@@ -20,7 +20,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 做出來的convolution做整數乘法實測可行，結果如下圖：
 ![bd](images/)
 
-#### C code
+### C code
 
 參考[fan-wenjie](https://github.com/fan-wenjie/LeNet-5)寫的C code版本Lenet-5，並做出適合PYNQ-Z2板子的修改，具體如下：
 
@@ -44,7 +44,9 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
   |原本的正確率|  ![result_origin](images/prec_o.png)|  
   |新的運算方法的正確率|  ![result_new](images/prec_n.png)|
 
-#### RESULT
+### 最終架構
+
+### RESULT
 
 下圖是我們測試三張圖片的結果，其中最後一行的前十個數字是每個數的機率，最高者就是我們預測出的數字。
 ![7](images/prec_7.png)
