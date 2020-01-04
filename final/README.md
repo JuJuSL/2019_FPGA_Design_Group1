@@ -14,19 +14,21 @@ E24056409、E24056263、E14054162
 
 Convolution的feature用18bits的port，weight則是25bits，以最大限度保留model的特性。
 
+因為convolution的input值幾乎都是小於4的小數，
+
 * Block Design
 ![bd](images/block.PNG)
 
-做出來的convolution做整數乘法實測可行，結果如下圖：
+做出來的convolution做小數乘法實測可行，結果如下圖：
 ![bd](images/)
 
-#### C code
+### C code
 
 參考[fan-wenjie](https://github.com/fan-wenjie/LeNet-5)寫的C code版本Lenet-5，並做出適合PYNQ-Z2板子的修改，具體如下：
 
 1. Weight讀入由binary read改為直接寫成0.2392839...的形式，讀到小數點下第65位。因為在PYNQ-Z2中要讀檔案需要用特殊的函式庫Xilffs內含的FatFS文件系統，和C原本內建的fopen用法不同，無法用binary的方式讀入，因此需要作轉換。
 
-2. 讀圖片的方法也同樣，因為無法用binary的方法讀，所以改為直接在程式中定義，目前有放兩張圖片做測試。
+2. 讀圖片的方法也同樣，因為無法用binary的方法讀，所以改為直接在程式中定義，目前有放三張圖片做測試。
 ![讀圖片](images/pridicted.png)
 
 3. 要將convolution改為硬體來運算需要將原本的for迴圈改掉，整體的架構就會改變，尤其他在convolution的部分是用#define而非一般的function定義，因此我們定義了一個新的函示conv來專門做5\*5 convolution的硬體運算。
@@ -44,8 +46,14 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
   |原本的正確率|  ![result_origin](images/prec_o.png)|  
   |新的運算方法的正確率|  ![result_new](images/prec_n.png)|
 
-#### RESULT
+### 最終架構
 
+### RESULT
+
+下圖是我們測試三張圖片的結果，其中最後一行的前十個數字是每個數的機率，最高者就是我們預測出的數字。
+![7](images/prec_7.png)
+![0](images/prec_0.png)
+![2](images/prec_2.png)
 
 ### 問題與討論
 
@@ -55,6 +63,8 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 3. 在用DSP48E1時，無法確定他的算法是不是可以在[2's complement中通用](https://forums.xilinx.com/t5/AI-Engine-DSP-IP-and-Tools/Two-s-Complement-Multiplier-with-DSP48E1/m-p/320439)，在閱讀Document的時候發現它的確是用2's complement的方法做運算，因此才能適用在我們的5\*5convolution上。
 ![twoscomplement](images/twocomplement.png)
+
+4. 基於我們的DSP架構，最後的加法只有48bits，若是用的太緊繃，可能會造成overflow，因此我們原本決定的Fix-Point位數被我們改為目前的1024，這樣就不會有overflow的問題。
 
 ### 參考資料
 
