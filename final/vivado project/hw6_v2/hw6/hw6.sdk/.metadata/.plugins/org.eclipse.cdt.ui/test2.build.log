@@ -1,0 +1,40 @@
+15:24:39 **** Auto Build of configuration Debug for project test2 ****
+make pre-build main-build 
+a9-linaro-pre-build-step
+' '
+'Building file: ../src/main.c'
+'Invoking: ARM v7 gcc compiler'
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I../../test2_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+../src/main.c: In function 'FfsSdPolledExample':
+../src/main.c:127:9: warning: pointer targets in passing argument 1 of 'printf' differ in signedness [-Wpointer-sign]
+  printf(DestinationAddress+10);
+         ^~~~~~~~~~~~~~~~~~
+In file included from d:\sdk\2018.3\gnu\aarch32\nt\gcc-arm-none-eabi\arm-none-eabi\libc\usr\include\stdlib.h:11:0,
+                 from ../src/main.c:2:
+d:\sdk\2018.3\gnu\aarch32\nt\gcc-arm-none-eabi\arm-none-eabi\libc\usr\include\stdio.h:181:5: note: expected 'const char * restrict' but argument is of type 'u8 * {aka unsigned char *}'
+ int _EXFUN(printf, (const char *__restrict, ...)
+     ^
+../src/main.c:128:24: warning: pointer targets in passing argument 1 of 'strtol' differ in signedness [-Wpointer-sign]
+  int num = (int)strtol(DestinationAddress+10,NULL,16);
+                        ^~~~~~~~~~~~~~~~~~
+In file included from d:\sdk\2018.3\gnu\aarch32\nt\gcc-arm-none-eabi\arm-none-eabi\libc\usr\include\stdlib.h:11:0,
+                 from ../src/main.c:2:
+d:\sdk\2018.3\gnu\aarch32\nt\gcc-arm-none-eabi\arm-none-eabi\libc\usr\include\stdlib.h:159:6: note: expected 'const char * restrict' but argument is of type 'u8 * {aka unsigned char *}'
+ long _EXFUN(strtol,(const char *__restrict __n, char **__restrict __end_PTR, int __base));
+      ^
+../src/main.c:44:7: warning: unused variable 'work' [-Wunused-variable]
+  BYTE work[FF_MAX_SS];
+       ^~~~
+../src/main.c:42:7: warning: unused variable 'NumBytesWritten' [-Wunused-variable]
+  UINT NumBytesWritten;
+       ^~~~~~~~~~~~~~~
+../src/main.c: In function 'foo':
+../src/main.c:237:6: warning: unused variable 'batches' [-Wunused-variable]
+  int batches[] = { 300 };
+      ^~~~~~~
+'Finished building: ../src/main.c'
+' '
+make: *** No rule to make target '../src/lscript.ld', needed by 'test2.elf'.  Stop.
+
+15:24:40 Build Finished (took 633ms)
+

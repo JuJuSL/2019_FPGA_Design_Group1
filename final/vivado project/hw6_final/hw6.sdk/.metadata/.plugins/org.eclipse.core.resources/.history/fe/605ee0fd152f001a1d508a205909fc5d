@@ -1,0 +1,81 @@
+#include "conv_v1.h"
+#include "lenet.h"
+#include <stdio.h>
+#include "xil_printf.h"
+#include "xil_io.h"
+#include "xparameters.h"
+#include <stdlib.h>
+#include <math.h>
+
+#define FILE_TRAIN_IMAGE	"train-images-idx3-ubyte"
+#define FILE_TRAIN_LABEL	"train-labels-idx1-ubyte"
+#define FILE_TEST_IMAGE		"t10k-images-idx3-ubyte"
+#define FILE_TEST_LABEL		"t10k-labels-idx1-ubyte"
+#define LENET_FILE 		"model.dat"
+#define COUNT_TRAIN		60000
+#define COUNT_TEST		1
+
+int testing(LeNet5 *lenet, image *test_data, uint8 *test_label,int total_size)
+{
+	int right = 0, percent = 0;
+	for (int i = 0; i < total_size; ++i)
+	{
+		printf("%4d picture:\n", i+1);
+		uint8 l = test_label[i];
+		printf("    label:%2d\n", l);
+		// print image
+		printf("       ");
+		for(int b=0; b<28; b++){
+				printf("%3d ", b);
+			}
+		printf("\n");
+		for(int a=0; a<28; a++){
+			printf("line:%2d", a);
+			for(int b=0; b<28; b++){
+				printf("%3hhu ", test_data[i][a][b]);
+			}
+			printf("\n");
+		}
+
+		int p = Predict(lenet, test_data[i], 10);
+		printf("    pridicted number:%2d\n", p);
+		right += l == p;
+		if (i * 100 / total_size > percent)
+			printf("test:%2d%%\n", percent = i * 100 / total_size);
+	}
+	return right;
+}
+
+void foo()
+{
+	xil_printf("Start \r\n");
+	LeNet5 *lenet = (LeNet5 *)malloc(sizeof(LeNet5));
+	char* Data;
+	Data = FfsSdPolledExample(lenet,"model0_1.txt");
+	image *test_data = (image *)calloc(COUNT_TEST, sizeof(image));
+	uint8 *test_label = (uint8 *)calloc(COUNT_TEST, sizeof(uint8));
+
+	loadimage(test_data, test_label);
+
+	//Initial(lenet);
+	//int batches[] = { 300 };
+	int right = testing(lenet, test_data, test_label, COUNT_TEST);
+	printf("%d/%d\n", right, COUNT_TEST);
+
+	//save(lenet, LENET_FILE);
+
+	free(lenet);
+	//free(train_data);
+	//free(train_label);
+	free(test_data);
+	free(test_label);
+	system("pause");
+}
+
+
+int main(){
+	foo();
+
+
+	return 0;
+}

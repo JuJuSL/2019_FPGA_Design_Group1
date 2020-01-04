@@ -1,0 +1,30 @@
+
+
+/***************************** Include Files *******************************/
+#include "conv_v1.h"
+
+
+void conv(double a,double b, int i){
+	int A = (int)(a*1024);
+	int B = (int)(b*1024);
+	CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR,204,0);
+	CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR,208,0);
+	CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR,4+4*i,A);
+	CONV_V1_mWriteReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR,104+4*i,B);
+
+}
+double result(){
+	u32 a1,a2;
+	int n = 0;
+	double result;
+	a1 = CONV_V1_mReadReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR,212);
+	a2 = CONV_V1_mReadReg(XPAR_CONV_V1_0_S00_AXI_BASEADDR,216);
+	n = (a2>32768)?1:0;
+	a2 = (a2>32768)? (~a2 & 65535):a2;
+	a1 = (a2>32768)? ~a1+1:a1;
+	result = ((double)a1 + (double)a2 * 4294967296)/1048576;
+	result = (n==1)? -1*result:result;
+	return result;
+}
+
+/************************** Function Definitions ***************************/

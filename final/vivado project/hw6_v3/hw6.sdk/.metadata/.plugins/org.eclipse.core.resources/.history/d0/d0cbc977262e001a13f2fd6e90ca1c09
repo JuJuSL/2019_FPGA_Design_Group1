@@ -1,0 +1,22 @@
+#include "conv_v1.h"
+#include "lenet.h"
+#include <stdio.h>
+#include "xil_printf.h"
+#include "xil_io.h"
+#include "xparameters.h"
+#include <stdlib.h>
+#include <math.h>
+
+
+
+int main(){
+	xil_printf("Start \r\n");
+		LeNet5 *lenet = (LeNet5 *)malloc(sizeof(LeNet5));
+		char* Data;
+		Data = FfsSdPolledExample(lenet,"model0_1.txt");
+
+
+
+
+	return 0;
+}
