@@ -20,7 +20,9 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 ![bd](images/block.PNG)
 
 做出來的convolution做小數乘法實測可行，結果如下圖：
-![bd](images/)
+![bd](images/conv_d.PNG)
+用excel驗證後的結果也是正確的，有誤差的原因是放到excel做運算的資料只有每個數的小數點後六位，因此偏移了一些：
+![excel](images/conv_cal.PNG)
 
 ### C code
 
