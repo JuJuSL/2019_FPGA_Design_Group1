@@ -52,15 +52,15 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 
 * convolution
 
-原圖切成 32 X 32 和 權重層5 X 5相疊合，完成下列步驟
+原圖切成 32 X 32 和 權重層5 X 5相疊合，完成下列步驟 
+  
+          (1) `原圖的矩陣1,1位置` 和 `權重層1,1位置` 疊合
 
-(1) `原圖的矩陣1,1位置` 和 `權重層1,1位置` 疊合
+          (2) 將疊合的兩數相乘 ，後將25個乘積結果做相加
 
-(2) 將疊合的兩數相乘 ，後將25個乘積結果做相加
+          (3) 權重層往右移 即 `原圖的矩陣1,2位置` 和 `權重層1,1位置` 疊合，重複步驟2
 
-(3) 權重層往右移 即 `原圖的矩陣1,2位置` 和 `權重層1,1位置` 疊合，重複步驟2
-
-(4) 權重層持續往右下移，直到走遍整張圖
+          (4) 權重層持續往右下移，直到走遍整張圖
 
 ![cnn](images/cnn.gif)
 
@@ -68,10 +68,10 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 
 將  convolution結果中的n*n區域，以單一值來表示，目的是為了降維。
 
-合併方法：
-  ==>  
-  Max pooling :取最大值
-  Average pooling： 取平均值
+合併方法： 
+  
+          Max pooling :取最大值
+          Average pooling： 取平均值
 
 
 ![pool.png](images/pool.png)
@@ -83,6 +83,13 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 * output
 
 作高斯機率計算，求各分類結果可能的機率值。
+
+![高斯](images/GS.png)
+
+因此取預測結果即取`輸出機率最高的項`(如圖)
+
+![高斯](images/GS_result.JPG)
+
 
 3.軟體最終架構
 
