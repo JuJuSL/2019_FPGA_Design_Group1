@@ -73,6 +73,7 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 移除原本lenet的第二次卷積，接法和各層維度如下圖所示
 
 ![軟體架構](images/c_final_structure.JPG)
+
 ### C code
 
 參考[fan-wenjie](https://github.com/fan-wenjie/LeNet-5)寫的C code版本Lenet-5，並做出適合PYNQ-Z2板子的修改，具體如下：
