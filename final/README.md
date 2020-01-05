@@ -64,6 +64,10 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
   |------|------|
   |原本的正確率|  ![result_origin](images/prec_o.png)|  
   |新的運算方法的正確率|  ![result_new](images/prec_n.png)|
+  
+7.軟體最終架構
+
+![軟體架構](images/c_final_structure.jpg)
 
 ### 最終架構
 
