@@ -67,6 +67,8 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 ### 最終架構
 
+![ARCH](images/ARCH.png)
+
 ### RESULT
 
 下圖是我們測試三張圖片的結果，其中最後一行的前十個數字是每個數的機率，最高者就是我們預測出的數字。
