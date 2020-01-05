@@ -52,7 +52,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 * convolution
 
-    原圖切成 32 X 32 和 權重層5 X 5相疊合，完成下列步驟 
+    `原圖切成 32 X 32` 和 `權重層5 X 5` 相疊合，完成下列步驟 
   
           (1) "原圖的矩陣1,1位置" 和 "權重層1,1位置" 疊合
 
