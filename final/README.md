@@ -69,8 +69,9 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 將  convolution結果中的n*n區域，以單一值來表示，目的是為了降維。
 
 合併方法：
-  ==> Max pooling :取最大值
-      Average pooling： 取平均值
+  ==>  
+  Max pooling :取最大值
+  Average pooling： 取平均值
 
 
 ![pool.png](images/pool.png)
@@ -81,7 +82,7 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 
 * output
 
-作高斯機率計算，求各分類結果可能的機率直。
+作高斯機率計算，求各分類結果可能的機率值。
 
 3.軟體最終架構
 
