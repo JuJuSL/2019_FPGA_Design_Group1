@@ -67,7 +67,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 ### 最終架構
 
-![ARCH](images/ARCH.png)
+![ARCH](images/ARCH2.png)
 
 ### RESULT
 
