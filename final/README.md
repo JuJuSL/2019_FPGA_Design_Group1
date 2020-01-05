@@ -74,6 +74,19 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 ![0](images/prec_0.png)
 ![2](images/prec_2.png)
 
+硬體部份，最後的timing report如下，並無錯誤，hold time和setup time的slack皆為正值：
+
+![time](images/time.PNG)
+
+Power report：
+
+![power](images.power.PNG)
+
+utilization report：
+
+![util](images/util.PNG)
+![SUM](images/sum.PNG)
+
 ### 問題與討論
 
 1. 大部分的時間都在研究如何從板子將權重檔讀進來，PYNQ-Z2如果可以有更直覺的方式讀取檔案我們會很樂意知道，目前是用Xilffs提供的函式庫，但sdk中Xilffs的資料夾常常會不見而無法引用，時常失靈，應該是sdk的bug。
