@@ -67,7 +67,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
   
 7.軟體最終架構
 
-![軟體架構](images/c_final_structure.jpg)
+![軟體架構](images/c_final_structure.JPG)
 
 ### 最終架構
 
