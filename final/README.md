@@ -178,3 +178,6 @@ utilization report：
 
 ### 參考資料
 
+https://github.com/fan-wenjie/LeNet-5
+
+https://forums.xilinx.com/t5/AI-Engine-DSP-IP-and-Tools/Two-s-Complement-Multiplier-with-DSP48E1/m-p/320439
