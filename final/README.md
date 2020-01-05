@@ -10,11 +10,11 @@ E24056409、E24056263、E14054162
 
 使用DSP48E1製作5\*5的convolution。
 
-總共25個DSP48E1模組串接成完整5\*5convolution，每個DSP48E1的乘法是25bits*18bits，相加的bias是48bits，output也是48bits，即為A(25)\*B(18)+C(48)=SOL(48)，再接上AXI controller、ZYNQ processor。
+總共25個DSP48E1模組串接成完整5\*5convolution，每個DSP48E1的乘法是25bits\*18bits，相加的bias是48bits，output也是48bits，即為A(25)\*B(18)+C(48)=SOL(48)，再接上AXI controller、ZYNQ processor。
 
 Convolution的feature用18bits的port，weight則是25bits，以最大限度保留model的特性。
 
-因為convolution的input值幾乎都是小於4的小數，
+因為convolution的input值幾乎都是小於4的小數，因此為了防止overflow，我們設定Fix-Point為1024，每次輸入的weight和feature數值都先乘以1024後取其整數在進入我們設計的DSP陣列中做運算，得到output後再把結果除以1024\*1024=1048576。
 
 * Block Design
 ![bd](images/block.PNG)
@@ -37,6 +37,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 5. 由於PYNQ-Z2無法直接將所有weight寫進記憶體運算，因此我們先完成第一層的卷積運算再和由軟體運算（軟體運算的方式也改為和硬體相同，也都位移10bits，也就是乘以
 1024）的結果進行比對，如果相同則代表我們的卷積是成功的，後來實測也是相同的，因此我們可以大膽預測若PYNQ-Z2有辦法讀入所有權重檔則能夠成功運行Lenet-5的MNIST的手寫數字辨識。
+由以下兩張圖可以看出運算結果並無錯誤：
 * PYNQ-Z2跑第一層卷積後的output
 ![pridict2](images/p_layer1.PNG)
 * C code跑第一層卷積後的output
