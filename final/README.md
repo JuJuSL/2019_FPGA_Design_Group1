@@ -80,7 +80,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 Power report：
 
-![power](images.power.PNG)
+![power](images/power.PNG)
 
 utilization report：
 
