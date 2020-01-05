@@ -54,11 +54,11 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
     原圖切成 32 X 32 和 權重層5 X 5相疊合，完成下列步驟 
   
-          (1) `原圖的矩陣1,1位置` 和 `權重層1,1位置` 疊合
+          (1) "原圖的矩陣1,1位置" 和 "權重層1,1位置" 疊合
 
           (2) 將疊合的兩數相乘 ，後將25個乘積結果做相加
 
-          (3) 權重層往右移 即 `原圖的矩陣1,2位置` 和 `權重層1,1位置` 疊合，重複步驟2
+          (3) 權重層往右移 即 "原圖的矩陣1,2位置" 和 "權重層1,1位置" 疊合，重複步驟2
 
           (4) 權重層持續往右下移，直到走遍整張圖
 
@@ -70,8 +70,8 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
     合併方法： 
   
-          Max pooling :取最大值
-          Average pooling： 取平均值
+          Max pooling     :  取最大值
+          Average pooling ： 取平均值
 
 
     ![pool.png](images/pool.png)
