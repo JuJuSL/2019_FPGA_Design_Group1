@@ -41,6 +41,7 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 2.各層簡介
 
 * input
+
 MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 
 ![MNIST 資料集](images/lenet_input_data.png)
