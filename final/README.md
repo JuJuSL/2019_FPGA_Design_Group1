@@ -42,17 +42,17 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 * input
 
-MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
+    MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 
-![MNIST 資料集](images/lenet_input_data.png)
+    ![MNIST 資料集](images/lenet_input_data.png)
 
-原圖切成32*32的feature layer
+    原圖切成32*32的feature layer
 
-![MNIST feature](images/lenet_feature.png)
+    ![MNIST feature](images/lenet_feature.png)
 
 * convolution
 
-原圖切成 32 X 32 和 權重層5 X 5相疊合，完成下列步驟 
+    原圖切成 32 X 32 和 權重層5 X 5相疊合，完成下列步驟 
   
           (1) `原圖的矩陣1,1位置` 和 `權重層1,1位置` 疊合
 
@@ -62,40 +62,40 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 
           (4) 權重層持續往右下移，直到走遍整張圖
 
-![cnn](images/cnn.gif)
+    ![cnn](images/cnn.gif)
 
 * pooling
 
-將  convolution結果中的n*n區域，以單一值來表示，目的是為了降維。
+    將  convolution結果中的n*n區域，以單一值來表示，目的是為了降維。
 
-合併方法： 
+    合併方法： 
   
           Max pooling :取最大值
           Average pooling： 取平均值
 
 
-![pool.png](images/pool.png)
+    ![pool.png](images/pool.png)
 
 * Full connect
 
-將前一層輸出拉平後，作矩陣運算。
+    將前一層輸出拉平後，作矩陣運算。
 
 * output
 
-作高斯機率計算，求各分類結果可能的機率值。
+    作高斯機率計算，求各分類結果可能的機率值。
 
-![高斯](images/GS.png)
+    ![高斯](images/GS.png)
 
-因此取預測結果即取`輸出機率最高的項`(如圖)
+    因此取預測結果即取`輸出機率最高的項`(如圖)
 
-![高斯](images/GS_result.JPG)
+    ![高斯](images/GS_result.JPG)
 
 
 3.軟體最終架構
 
-移除原本lenet的第二次卷積，接法和各層維度如下圖所示
+    移除原本lenet的第二次卷積，接法和各層維度如下圖所示
 
-![軟體架構](images/c_final_structure.JPG)
+    ![軟體架構](images/c_final_structure.JPG)
 
 <HR>
   
