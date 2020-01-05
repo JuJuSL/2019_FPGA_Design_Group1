@@ -6,6 +6,8 @@ E24056409、E24056263、E14054162
 
 利用Xilinx提供的DSP模組進行5\*5的convolution，並且用此硬體運行Lenet-5。
 
+<HR>
+
 ### 硬體架構
 
 使用DSP48E1製作5\*5的convolution。
@@ -28,6 +30,8 @@ Convolution的feature用18bits的port，weight則是25bits，以最大限度保�
 
 ![excel](images/conv_cal.PNG)
 
+<HR>
+
 ### lenet架構
 
 1.原始架構圖
@@ -48,15 +52,25 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 * convolution
 
 原圖切成 32*32 和 權重層5*5相疊合，完成下列步驟
+
 (1) `原圖的矩陣1,1位置` 和 `權重層1,1位置` 疊合
+
 (2) 將疊合的兩數相乘 ，後降25個乘積結果做相加
+
 (3) 權重層往右移 即 `原圖的矩陣1,2位置` 和 `權重層1,1位置` 疊合`,重複步驟2
+
 (4) 權重層持續往右下移，直到走遍整張圖
 
+![cnn](images/cnn.gif)
 
 * pooling
 
 將  convolution結果中的n*n區域，以單一值來表示，目的是為了降維。
+
+合併方法：
+  ==> Max pooling :取最大值
+      Average pooling： 取平均值
+
 
 ![pool.png](images/pool.png)
 
@@ -74,6 +88,8 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
 
 ![軟體架構](images/c_final_structure.JPG)
 
+<HR>
+  
 ### C code
 
 參考[fan-wenjie](https://github.com/fan-wenjie/LeNet-5)寫的C code版本Lenet-5，並做出適合PYNQ-Z2板子的修改，具體如下：
@@ -111,6 +127,8 @@ MNIST 資料集（http://yann.lecun.com/exdb/mnist/ ）
   |原本的正確率|  ![result_origin](images/prec_o.png)|  
   |新的運算方法的正確率|  ![result_new](images/prec_n.png)|  
 
+<HR>
+
 ### 最終架構
 
 ![ARCH](images/ARCH2.png)
@@ -134,6 +152,8 @@ utilization report：
 
 ![util](images/util.PNG)
 ![SUM](images/sum.PNG)
+
+<HR>
 
 ### 問題與討論
 
